@@ -586,6 +586,8 @@ az deployment group create -g $resourceGroup -f apim.bicep -p apiManagementName=
 After the script has finished an API Management instance and a SHGW has been created.  
 Go to the API Management instance in Azure portal and click on "Gateways" in the menu. A gateway called "gw-01" has been created. Click on the gateway name --> Deployment --> Copy everything in the field called "Token" and set the variable "gwtoken", the value must be inside "" double quotes. 
 
+Example: gwtoken="GatewayKey gw-01&202206230....."
+ 
 ```bash
 gwtoken="[Paste value from the Token field]"
 ```
