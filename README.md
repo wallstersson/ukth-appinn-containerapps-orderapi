@@ -443,7 +443,7 @@ Once `hey` has finished generating messages, the number of instances of the HTTP
 
 ## Deploy version 5
 
-(If you are not able to create a service principal in the Azure Active Directory that is connected to your subscription, you will unfortunately not be able to do this part of the lab)
+> Tip! If you are not able to create a service principal in the Azure Active Directory that is connected to your subscription, you will unfortunately not be able to do this part of the lab
 
 Until now we have worked with docker images that others have created, now we are going to do a code change on our own code base and push the changes to Container Apps using GitHub Actions. [Learn more](https://docs.microsoft.com/en-us/azure/container-apps/github-actions-cli?tabs=bash)
 
