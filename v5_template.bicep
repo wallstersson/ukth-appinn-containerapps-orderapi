@@ -115,7 +115,7 @@ resource httpapi 'Microsoft.App/containerApps@2022-03-01' = {
       revisionSuffix: 'red'
       containers: [
         {
-          image: 'kevingbb/httpapiapp:v2'
+          image: 'krnissbrandt/aca-ws-httpapi:v2'
           name: 'httpapi2'
           env: [
             {
@@ -125,6 +125,10 @@ resource httpapi 'Microsoft.App/containerApps@2022-03-01' = {
             {
               name: 'QueueConnectionString'
               secretRef: 'queueconnection'
+            }
+            {
+              name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+              value: AppInsights_Name_resource.properties.ConnectionString
             }
           ]
         }

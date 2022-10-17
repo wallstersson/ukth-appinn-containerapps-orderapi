@@ -105,7 +105,7 @@ resource queuereader 'Microsoft.App/containerApps@2022-03-01' = {
     template: {
       containers: [
         {
-          image: 'kevingbb/queuereader:v2'
+          image: 'krnissbrandt/aca-ws-queuereader:v1'
           name: 'queuereader'
           env: [
             {
@@ -120,7 +120,10 @@ resource queuereader 'Microsoft.App/containerApps@2022-03-01' = {
               name: 'TargetApp'
               value: 'storeapp'
             }
-           
+            {
+              name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+              value: AppInsights_Name_resource.properties.ConnectionString
+            }
           ]
         }
       ]
@@ -169,8 +172,14 @@ resource storeapp 'Microsoft.App/containerApps@2022-03-01' = {
     template: {
       containers: [
         {
-          image: 'kevingbb/storeapp:v1'
+          image: 'krnissbrandt/aca-ws-storeapp:v1'
           name: 'storeapp'
+          env: [
+            {
+              name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+              value: AppInsights_Name_resource.properties.ConnectionString
+            }
+          ]
         }
       ]
       scale: {
@@ -207,7 +216,7 @@ resource httpapi 'Microsoft.App/containerApps@2022-03-01' = {
       revisionSuffix: ContainerApps_HttpApi_CurrentRevisionName
       containers: [
         {
-          image: 'kevingbb/httpapiapp:v1'
+          image: 'krnissbrandt/aca-ws-httpapi:v1'
           name: 'httpapi'
           env: [
             {
@@ -217,6 +226,10 @@ resource httpapi 'Microsoft.App/containerApps@2022-03-01' = {
             {
               name: 'QueueConnectionString'
               secretRef: 'queueconnection'
+            }
+            {
+              name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
+              value: AppInsights_Name_resource.properties.ConnectionString
             }
           ]
         }
