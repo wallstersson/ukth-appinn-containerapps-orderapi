@@ -1,3 +1,10 @@
+const appInsights = require('applicationinsights');
+try {
+    appInsights.setup().start();
+} catch (e) {
+    console.log("Application insights failed to start, continue without. Message: " + e.message)
+}
+
 const express = require('express');
 
 const app = express();
