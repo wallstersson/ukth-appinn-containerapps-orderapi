@@ -17,6 +17,7 @@ namespace QueueWorker
                 {
                     services.AddHostedService<Worker>();
                     services.AddSingleton(new HttpClient());
+                    services.AddApplicationInsightsTelemetryWorkerService();
                 });
     }
 }
