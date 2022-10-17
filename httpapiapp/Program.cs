@@ -1,10 +1,12 @@
 using HttpApi;
+using Microsoft.ApplicationInsights.Extensibility;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddSingleton<ITelemetryInitializer>(new RoleNameTelemetryInitializer("http-api"));
 
 builder.Services.AddSingleton<MessageQueueClient>();
 
