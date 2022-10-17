@@ -45,7 +45,7 @@ namespace QueueWorker
                     try
                     {
                         using var operation = _telemetryClient.StartOperation<DependencyTelemetry>("receive-message");
-
+                        
                         QueueMessage message = await client.ReceiveMessageAsync(cancellationToken: stoppingToken);
 
                         if (message == null)
@@ -56,7 +56,7 @@ namespace QueueWorker
 
                         logger.LogInformation($"Message ID: '{message.MessageId}', contents: '{message.Body?.ToString()}'");
                         
-
+                        
                         await httpClient.PostAsync(storeUrl, JsonContent.Create(new { Id = message.MessageId, Message = message.Body?.ToString() }), stoppingToken);
 
                         await client.DeleteMessageAsync(message.MessageId, message.PopReceipt, stoppingToken);
