@@ -1,3 +1,21 @@
+const appInsights = require('applicationinsights');
+try {
+    appInsights.setup()
+        .setAutoDependencyCorrelation(true)
+        .setAutoCollectRequests(true)
+        .setAutoCollectPerformance(true, true)
+        .setAutoCollectExceptions(true)
+        .setAutoCollectDependencies(true)
+        .setAutoCollectConsole(true)
+        .setUseDiskRetryCaching(true)
+        .setSendLiveMetrics(true)
+        .setDistributedTracingMode(appInsights.DistributedTracingModes.AI)
+        .start();
+
+} catch (e) {
+    console.log("Application insights failed to start, continue without. Message: " + e.message)
+}
+
 const express = require('express');
 
 const app = express();

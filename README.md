@@ -431,6 +431,12 @@ cd scripts
 ./appwatch.sh $resourceGroup $dataURL
 ```
 
+> When running the dev container locally it is a risk that the appwatch script has wrong line-endings. Run the following command to fix the issue.
+
+> ```bash
+> sed -i -e 's/\r$//' appwatch.sh
+> ```
+
 This will split your terminal into four separate views.
 
 * On the left, you will see the output from the `hey` command. It's going to send 10,000 requests to the application, so there will be a short delay, around 20 to 30 seconds, whilst the requests are sent. Once the `hey` command finishes, it should report its results.

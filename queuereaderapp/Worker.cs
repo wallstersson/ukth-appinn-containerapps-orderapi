@@ -10,6 +10,8 @@ namespace QueueWorker
     using System.Net.Http.Json;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.ApplicationInsights;
+    using Microsoft.ApplicationInsights.DataContracts;
 
     internal sealed class Worker : BackgroundService
     {
@@ -17,13 +19,15 @@ namespace QueueWorker
         private readonly ILogger<Worker> logger;
         private readonly IConfiguration config;
         private readonly HttpClient httpClient;
+        private readonly TelemetryClient _telemetryClient;
 
-        public Worker(ILogger<Worker> logger, IConfiguration config, IHostApplicationLifetime applicationLifetime, HttpClient httpClient)
+        public Worker(ILogger<Worker> logger, IConfiguration config, IHostApplicationLifetime applicationLifetime, HttpClient httpClient, TelemetryClient telemetryClient)
         {
             this.logger = logger;
             this.config = config;
             this.applicationLifetime = applicationLifetime;
             this.httpClient = httpClient;
+            _telemetryClient = telemetryClient;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -40,6 +44,8 @@ namespace QueueWorker
 
                     try
                     {
+                        using var operation = _telemetryClient.StartOperation<DependencyTelemetry>("receive-message");
+                        
                         QueueMessage message = await client.ReceiveMessageAsync(cancellationToken: stoppingToken);
 
                         if (message == null)
@@ -50,7 +56,7 @@ namespace QueueWorker
 
                         logger.LogInformation($"Message ID: '{message.MessageId}', contents: '{message.Body?.ToString()}'");
                         
-
+                        
                         await httpClient.PostAsync(storeUrl, JsonContent.Create(new { Id = message.MessageId, Message = message.Body?.ToString() }), stoppingToken);
 
                         await client.DeleteMessageAsync(message.MessageId, message.PopReceipt, stoppingToken);

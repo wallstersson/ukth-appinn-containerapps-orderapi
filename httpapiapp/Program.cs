@@ -1,20 +1,30 @@
-namespace HttpApi
+using HttpApi;
+using Microsoft.ApplicationInsights.Extensibility;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddSingleton<ITelemetryInitializer>(new RoleNameTelemetryInitializer("http-api"));
+
+builder.Services.AddSingleton<MessageQueueClient>();
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
 {
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Hosting;
-
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
+
+app.MapGet("/data", async (MessageQueueClient client) => Results.Text(await client.GetQueueInfo()));
+app.MapPost("/data", async (MessageQueueClient client, string message) =>
+{
+    var messageSent = await client.SendMessage(message);
+    return messageSent ? 
+        Results.Ok() : 
+        new UnavailableResult();
+});
+
+app.Run();

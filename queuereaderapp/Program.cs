@@ -1,3 +1,6 @@
+using Microsoft.ApplicationInsights.Extensibility;
+using QueueReader;
+
 namespace QueueWorker
 {
     using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +20,8 @@ namespace QueueWorker
                 {
                     services.AddHostedService<Worker>();
                     services.AddSingleton(new HttpClient());
+                    services.AddApplicationInsightsTelemetryWorkerService();
+                    services.AddSingleton<ITelemetryInitializer>(new RoleNameTelemetryInitializer("queuereader"));
                 });
     }
 }
