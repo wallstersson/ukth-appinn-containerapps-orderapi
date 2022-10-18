@@ -8,7 +8,7 @@ To setup the environment you will fork the respository and then use Azure CLI or
 2. Fork this repo by selecting the *Fork* menu in the GitHub top right corner
 ![](images/fork.png)
 
-> **Note**
+> **Note**<br>
 > If your GitHub account is part of an organization there is a limitation that only one fork is possible in the same organization. The workaround is to clone this repo, create a new repository and then push the code from the cloned working copy similar to this:
 >
 >  ``` bash
@@ -36,7 +36,7 @@ Once the Codespaces finished deployment you will have a browser based VSCode ins
 
 ![](images/codespaces-done.png)
 
-> **Note**
+> **Note**<br>
 > By default Codespaces time out after 30 minutes of inactivity. After that time any shell variables you defined will be gone and needs to be added again. All changes on files will be persisted between restarts though. An option can be to add variables and commands to a script file to be used between timeout restarts.
 
 </details>
@@ -131,13 +131,13 @@ Let's start by setting a unique name variable that we will use for creating Azur
 name=ca$(cat /dev/urandom | tr -dc '[:lower:]' | fold -w ${1:-5} | head -n 1)
 
 # Set variable for resource group
-resourceGroupName=${name}-rg
+resourceGroup=${name}-rg
 
 # Set a variable for location
 location=northeurope
 
 # Create Resource Group
-az group create --name $resourceGroupName --location $location -o table
+az group create --name $resourceGroup --location $location -o table
 
 ```
 </details>
@@ -151,19 +151,19 @@ az group create --name $resourceGroupName --location $location -o table
 $name = -join ((97..122) | Get-Random -Count 6 | % {[char]$_})
 
 # Set variable for resource group
-$resourceGroupName = "$name-rg"
+$resourceGroup = "$name-rg"
 
 # Set a variable for location
 $location="northeurope"
 
 # Create Resource Group
-New-AzResourceGroup -Name $resourceGroupName -Location $location
+New-AzResourceGroup -Name $resourceGroup -Location $location
 
 ```
 </details>
 <br>
 
 ## The challenges
-
 [Challenge 1: Setup the environment](challenge1.md)
 [Challenge 2: Deploy and troubleshoot a Container Apps environment](challenge2.md)
+[Challenge 3: Deploy Container App with traffic split](challenge3.md)

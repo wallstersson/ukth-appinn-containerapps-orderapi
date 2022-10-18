@@ -3,6 +3,9 @@ You will work in a separate for of this repository in GitHub because in a later 
 
 All Azure resources will be provisioned in one Resource Group that you create.
 
+The following image illustrates the steps in this challenge
+![](images/challenge-1-overview.png)
+
 ## Main objectives
 - Fork the repository and clone the repository in the development environment of choice. Some options are
   - GitHub Codespaces
@@ -37,3 +40,5 @@ All Azure resources will be provisioned in one Resource Group that you create.
 ## The challenges
 [Challenge 1: Setup the environment](challenge1.md)
 [Challenge 2: Deploy and troubleshoot a Container Apps environment](challenge2.md)
+[Challenge 3: Deploy Container App with traffic split](challenge3.md)
+
