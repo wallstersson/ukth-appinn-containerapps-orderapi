@@ -159,7 +159,7 @@ You should see the following output indicating that the queue is not read correc
 
 Let's do some troubleshooting.
 
-### Troubleshoot application
+### Troubleshoot and redeploy application
 ContainerApps integrates with Application Insights and Log Analytics. In the Azure Portal, go to the Log Analytics workspace in the resource group we're using for this demo and run the following query to view the logs for the `queuereader` application.
 
 ```text
@@ -174,10 +174,122 @@ You should see a some log entries that will likely contain the same information 
 ![](images/loganalytics-queue-error.png)
 > "Log_s": "      Queue 'foo' does not exist. Waiting..",
 
-Looks like we have configured the wrong name for the queue. That will be fixed in [Challenge 3](challenge3.md)
+Looks like we have configured the wrong name for the queue. 
+
+Go through the [V1 Bicep template](..\v1_template.bicep) and find where the wrong queue configuration is located.
+You will find it in the _queuereader_ container app configuration section.
+
+```bicep
+        name: 'queuereader'
+          env: [
+            {
+              name: 'QueueName'
+              value: 'foo'
+            }
+            {
+              name: 'QueueConnectionString'
+              secretRef: 'queueconnection'
+            }
+            {
+              name: 'TargetApp'
+              value: 'storeapp'
+            }
+```
+
+The needed changes to the Bicep code is already made for you in [V2 Bicep template](..\v1_template.bicep).
+
+Go ahead and deploy that version of the solution by repeating the same command from earlier but with the version 2 of the configuration
+
+
+<details>
+  <summary>Bash</summary>
+
+```bash
+
+# Deploy Bicep template.
+az deployment group create \
+  -g $resourceGroup \
+  --template-file v2_template.bicep \
+  --parameters @v2_parametersbicep.json \
+  --parameters \
+    ContainerApps_Environment_Name=$containerAppEnv \
+    LogAnalytics_Workspace_Name=$logAnalytics \
+    AppInsights_Name=$appInsights \
+    Container_Registry_Name=$acr 
+
+```
+
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+
+```PowerShell
+
+New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v2_deployment' -TemplateFile .\v2_template.bicep -TemplateParameterFile v2_template.bicep -Location $location -ContainerApps_Environment_Name $containerAppEnv -LogAnalytics_Workspace_Name $logAnalytics -AppInsights_Name $appInsights -Container_Registry_Name $acr
+
+```
+
+  </summary>
+</details>
+<br>
+
+Let's see what happens when we access the queue application using the data URL
+
+> As before, you can type `echo $dataURL` to get the URL of the HTTP API and then open it in a browser if you prefer
+
+``` bash
+curl $dataURL
+```
+
+The result tells us that `demoqueue` has no messages:
+
+> `Queue 'demoqueue' has 0 messages`
+
+This indicates that the messages are now processed. Now add another test message.
+
+```bash
+curl -X POST $dataURL?message=item2
+```
+
+Ok, let's check our Store URL and see what happens this time
+
+```bash
+curl $storeURL
+```
+
+> `[{"id":"a85b038a-a01f-4f25-b468-238d0c8a3676","message":"24a1f5ed-2407-4f9d-a6f9-5664436f1c28"},{"id":"f2b4c93a-63e5-4a4d-8a66-1fa4d4b958fe","message":"5940cf24-8c55-4b38-938a-10d9351d5d2b"}]`
+
+Ok, that's some progress but not the messages we sent in the query string. 
+
+Let's take a look at the application code
+
+
+[MessageQueueClient.cs](..\httpapiapp\MessageQueueClient.cs)
+
+```c#
+...
+  public async Task<bool> SendMessage(string message) => await SendMessageToQueue(Guid.NewGuid().ToString());
+...
+```
+
+It looks like the code is set to send a GUID, not the message itself. Must have been something the developer left in to test things out. The correct code should look like this:
+
+[MessageQueueClient.cs](..\httpapiapp\MessageQueueClient.cs) (version 2)
+
+```c#
+    public async Task<bool> SendMessageV2(string message) => await SendMessageToQueue($"{Guid.NewGuid()}--{message}");
+ 
+```
+We've now fixed the code for you so that the message received is now actually being sent and we've packaged this up into a new container ready to be redeployed. 
+
+But maybe we should be cautious and make sure this new change is working as expected and therefore perform a controlled rollout of the new version so only a subset of the incoming requests hit the new version.
+
+That will be done as part of [Challenge 3](challenge3.md)
 
 ## The challenges
 
 [Challenge 1: Setup the environment](challenge1.md)
-[Challenge 2: Deploy and troubleshoot a Container Apps environment](challenge2.md)
-[Challenge 3: Deploy Container App with traffic split](challenge3.md)
+[Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps](challenge2.md)
+[Challenge 3: Split traffic for controlled rollout](challenge3.md)

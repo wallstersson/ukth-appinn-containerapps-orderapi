@@ -1,0 +1,42 @@
+# Challenge 2: Split traffic for controlled rollout
+Azure Container Apps implements container app versioning by creating revisions. More than one revision can be active at the same time with the possibility to split external HTTP traffic between the active revisions. This is useful in our scenario where we recently made updates to our Order HTTP API code and we want to make sure this change is working as expected.
+
+You will make needed changes to the configuration to support splitting traffic 80/20 between two revisions of the HTTP API.
+
+The following image illustrates the steps in this challenge
+
+![](images/challenge-3-overview.png)
+
+
+## Main objectives
+- Add support for traffic splitting
+- Deploy new version of Container App
+- Run load testing tool to examine splitting behavior
+
+
+## Activities
+
+- Add traffic split to the HTTP API app by changing existing [Bicep template v3](..\v3_template.bicep)
+- Deploy updated Bicep template
+- Run `hay` tool to bulk add orders via HTTP API
+- Verify that traffic is distributed between HTTP API Container App revisions 
+
+
+## Definition of done
+- Deployed traffic splitting with ratio 80/20 between blue and green revisions of HTTP API Container App
+- Bulk add 25 orders HTTP API (https://httpapi.[your container app environment domain]/data?message=[your message])
+- Verify logs in Log Analytics for QueueReader application that approximately 20 % of the calls include your actual message and approximately 80 % still have the GUID message from the earlier revision.
+ 
+
+## Helpful links
+- [Revisions in Azure Container Apps (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/revisions)
+- [curl manual (curl.se)](https://curl.se/docs/manual.html)
+- [Monitor logs in Azure Container Apps with Log Analytics (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash)
+
+## Solution
+- View the solution here: [Challenge 3 - Solution](solution3.md)
+
+## The challenges
+[Challenge 1: Setup the environment](challenge1.md)
+[Challenge 2: Deploy and troubleshoot a Container Apps environment](challenge2.md)
+[Challenge 3: Perform blue-green deployment with Container App traffic splitting](challenge3.md)
