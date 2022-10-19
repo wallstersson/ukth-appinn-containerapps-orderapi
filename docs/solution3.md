@@ -161,7 +161,7 @@ That will be done as part of [Challenge 4](challenge4.md)
 
 ## The challenges
 
-[Challenge 1: Setup the environment](challenge1.md)
-[Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps](challenge2.md)
-[Challenge 3: Split traffic for controlled rollout](challenge3.md)
-[Challenge 4: Scale Container Apps](challenge4.md)
+- [Challenge 1: Setup the environment](challenge1.md)
+- [Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps](challenge2.md)
+- [Challenge 3: Split traffic for controlled rollout](challenge3.md)
+- [Challenge 4: Scale Container Apps](challenge4.md)
