@@ -15,7 +15,6 @@ The following image illustrates the steps in this challenge
 - Log in to Azure and create a resource group
 
 ## Activities
-
 - Create a fork of this repository
 - Clone the repository in a development environment
 - Install the `hey` load testing tool

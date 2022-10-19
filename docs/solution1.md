@@ -3,6 +3,7 @@
 ## Solution steps
 To setup the environment you will fork the respository and then use Azure CLI or Azure PowerShell to create a resource group. You will also install some tools used in later challenges.
 
+
 ### Fork the repository
 1. Log in to [GitHub](https://github.com) with your GitHub account
 2. Fork this repo by selecting the *Fork* menu in the GitHub top right corner
@@ -72,15 +73,41 @@ brew install hey
 </details>
 <br>
 
-## Install Azure CLI extension for Container Apps
-You will need to install an Azure CLI extension to work with Container Apps.
+## Install Azure command line extension for Container Apps
+
+
+You will need to install an extension to work with Container Apps.
 
 
 Run the following command in a shell:
 
+
+<details>
+  <summary>Azure CLI </summary>
+
 ```bash
 az extension add --name containerapp
 ```
+
+  </details>
+
+  <br>
+
+<details>
+  <summary>Azure PowerShell</summary>
+
+```PowerShell
+
+# If you are using Codespaces the Azure PowerShell _Az_ modules are not pre-installed.
+Install-Module Az
+
+# Install Container Apps module
+Install-Module Az.App
+
+```
+  </details>
+
+  <br>
 
 ## Log in to Azure 
 <details>
@@ -148,7 +175,7 @@ az group create --name $resourceGroup --location $location -o table
 
 ```PowerShell
 # Generate a random name
-$name = -join ((97..122) | Get-Random -Count 6 | % {[char]$_})
+$name = -join ((97..122) | Get-Random -Count 7 | % {[char]$_})
 
 # Set variable for resource group
 $resourceGroup = "$name-rg"
