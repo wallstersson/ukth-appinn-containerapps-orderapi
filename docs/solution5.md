@@ -244,11 +244,6 @@ After the deployment has succeeded, please verify that the revision number has c
 
 ### Verify that the code change has been deployed 
 
-
-### Deploy updated Bicep template
-
-One additional time, we'll now deploy the new configuration with scaling configured. We will also add a simple dashboard for monitoring the messages flow.
-
 Now it’s time to validate that the changes we made has taken affect. Send a message to the API.
 
 <details>
