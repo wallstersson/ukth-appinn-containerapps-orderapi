@@ -33,8 +33,8 @@ The following image illustrates the steps in this challenge
 
 
 ## Definition of done
-- Created an API Management service with self hosted gateway using existing [Bicep apim template](..\apim.bicep)
-- Deployed [Bicep template v5](..\v5_template.bicep) which includes a new _HTTP API 2_ app
+- Created an API Management service with self hosted gateway using existing [Bicep apim template](apim.bicep)
+- Deployed [Bicep template v5](v5_template.bicep) which includes a new _HTTP API 2_ app
 - Added a new order by doing a _HTTP POST_ to HttpAPI (https://httpapi.[your container app environment domain]/data?message=[your message]) with a APIM key in the header (_X-API-key_) 
 - Verified logs in Log Analytics for QueueReader application that the QueueReader App is logging with your order message.
  

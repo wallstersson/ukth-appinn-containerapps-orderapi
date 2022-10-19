@@ -5,7 +5,7 @@ Our application is now verified using blue-green deployment as part of [challeng
 .
 
 ### Examine scaling rules
-Review scaling rules added to HTTP API and QueueReader App by examining existing [Bicep template v4](../v4_template.bicep)
+Review scaling rules added to HTTP API and QueueReader App by examining existing [Bicep template v4](v4_template.bicep)
 
 ```json
     ]

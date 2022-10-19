@@ -14,7 +14,7 @@ The following image illustrates the steps in this challenge
 
 ## Activities
 
-- Deploy Azure resources using an existing [Bicep template](..\v1_template.bicep)
+- Deploy Azure resources using an existing [Bicep template](v1_template.bicep)
 - Call the StoreApp API go get existing orders
 - Call the HttpApi to add a new order and verify it is being added
 - Troubleshoot potential issues using Log Analytics and determine the reason. 

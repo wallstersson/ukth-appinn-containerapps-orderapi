@@ -16,7 +16,7 @@ The following image illustrates the steps in this challenge
 
 ## Activities
 
-- Add traffic split to the HTTP API app by changing existing [Bicep template v3](..\v3_template.bicep)
+- Add traffic split to the HTTP API app by changing existing [Bicep template v3](v3_template.bicep)
 - Deploy updated Bicep template
 - Run `hay` tool to bulk add orders via HTTP API
 - Verify that traffic is distributed between HTTP API Container App revisions 

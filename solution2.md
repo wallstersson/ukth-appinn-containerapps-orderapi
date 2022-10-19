@@ -4,7 +4,7 @@
 We'll deploy the first version of the application to Azure and use the _curl_ tool to test the application. We will then use _Log Analytics_ to troubleshoot the application.
 
 ### Deploy a Container Apps environment with related resources
-We'll deploy an initial version of the application to Azure. Review the [V1 Bicep template](../v1_template.bicep) that contains IaC definitions for Azure Container Apps Environment and other related services such as Log Analytics and a Storage account for the queue. Notice the individual container app resources 
+We'll deploy an initial version of the application to Azure. Review the [V1 Bicep template](v1_template.bicep) that contains IaC definitions for Azure Container Apps Environment and other related services such as Log Analytics and a Storage account for the queue. Notice the individual container app resources 
 
 
 Let's start by setting some variables that we will use for creating Azure resources in this lab.
@@ -176,7 +176,7 @@ You should see a some log entries that will likely contain the same information 
 
 Looks like we have configured the wrong name for the queue. 
 
-Go through the [V1 Bicep template](../v1_template.bicep) and find where the wrong queue configuration is located.
+Go through the [V1 Bicep template](v1_template.bicep) and find where the wrong queue configuration is located.
 You will find it in the _queuereader_ container app configuration section.
 
 ```bicep
@@ -196,7 +196,7 @@ You will find it in the _queuereader_ container app configuration section.
             }
 ```
 
-The needed changes to the Bicep code is already made for you in [V2 Bicep template](../v1_template.bicep).
+The needed changes to the Bicep code is already made for you in [V2 Bicep template](v2_template.bicep).
 
 Go ahead and deploy that version of the solution by repeating the same command from earlier but with the version 2 of the configuration
 
@@ -266,7 +266,7 @@ Ok, that's some progress but not the messages we sent in the query string.
 Let's take a look at the application code
 
 
-[MessageQueueClient.cs](../httpapiapp\MessageQueueClient.cs)
+[MessageQueueClient.cs](httpapiapp\MessageQueueClient.cs)
 
 ```c#
 ...
@@ -276,7 +276,7 @@ Let's take a look at the application code
 
 It looks like the code is set to send a GUID, not the message itself. Must have been something the developer left in to test things out. The correct code should look like this:
 
-[MessageQueueClient.cs](../httpapiapp\MessageQueueClient.cs) (version 2)
+[MessageQueueClient.cs](httpapiapp\MessageQueueClient.cs) (version 2)
 
 ```c#
     public async Task<bool> SendMessageV2(string message) => await SendMessageToQueue($"{Guid.NewGuid()}--{message}");
