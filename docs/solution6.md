@@ -204,7 +204,9 @@ ContainerAppConsoleLogs_CL
 
 You have now protected _HTTP API_ Container App behind API Management.
 
-Next step is to enhance security by protecting our _Dashboard App_ with Azure AD Authentication. That will be covered in [Challenge 7](challenge7.md)
+Next step is to enhance security by protecting our _Dashboard App_ with Azure AD Authentication. 
+
+That will be covered in [Challenge 7](challenge7.md)
 
 ## The challenges
 

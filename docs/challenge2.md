@@ -1,5 +1,5 @@
 # Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps
-You will deploy a container apps environment with related servvices such as Log Analytics and a Storage Account for the queue. At the end of this challenge you will verify that the application works and troubleshoot potential issues. 
+You will deploy a container apps environment with related services such as Log Analytics and a Storage Account for the queue. At the end of this challenge you will verify that the application works and troubleshoot potential issues. 
 
 
 The following image illustrates the steps in this challenge
@@ -25,17 +25,17 @@ The following image illustrates the steps in this challenge
 Verified that the following resources are deployed to the Azure resource group
   - Container Apps Environment
   - 3 Container Apps 
-    - StoreApp
-    - HttpApi
-    - QueueReader
+    - _storeapp_
+    - _httpapi_
+    - _queuereader_
 - Application Insights
 - Log Analytics
 - Container Registry
 
 Verified application functionality
-- Make a _HTTP GET_ call to StoreApp API (https://storeapp.[your container app environment domain]/store) to fetch existing orders
+- Make a _HTTP GET_ call to Store App API (https://storeapp.[your container app environment domain]/store) to fetch existing orders
 - Add an order by doing a _HTTP POST_ to HttpAPI (https://httpapi.[your container app environment domain]/data?message=[your message])
-- Do another call to StoreApp API to verify that order was added
+- Do another call to Store App API to verify that order was added
 - Potential issues detected and culprit located in the provided source code or templates.
 
 Redeploy application

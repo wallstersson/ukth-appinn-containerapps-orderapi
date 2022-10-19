@@ -4,6 +4,7 @@ You will work in a separate for of this repository in GitHub because in a later 
 All Azure resources will be provisioned in one Resource Group that you create.
 
 The following image illustrates the steps in this challenge
+
 ![](images/challenge-1-overview.png)
 
 ## Main objectives

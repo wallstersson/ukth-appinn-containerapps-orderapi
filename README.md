@@ -9,7 +9,7 @@ The following image illustrates the conceputal architecture
 
 ![](images/conceptual-architecture-overview.png)
 
-With a microservices architecture, Container Apps offer a simple experience that allows your developers focus on the services, and not infrastructure. The E-commerce backend will implemented as different Container Apps using built-in features for scaling, traffic splitting and servic-to-service calls as illustrated in the following image
+With a microservices architecture, Container Apps offer a simple experience that allows your developers focus on the services, and not infrastructure. The E-commerce backend will implemented as different Container Apps using built-in features for scaling, traffic splitting and service-to-service calls as illustrated in the following image
 
 ![](images/container-apps-overview.png)
 

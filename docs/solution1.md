@@ -44,7 +44,7 @@ Once the Codespaces finished deployment you will have a browser based VSCode ins
 
 
 <details>
-  <summary>Using git CLI from bash or PowerShell</summary>
+  <summary>Using git CLI from Bash or PowerShell</summary>
 Open the shell and run the following git CLI commands
 
 ```shell
@@ -148,10 +148,10 @@ Select-AzSubscription -SubscriptionId <subscription-id>
   <br>
 
 ## Create a resource group
-Let's start by setting a unique name variable that we will use for creating Azure resources in this demo, and a resource group for those resources to reside in. Select a location for the resource group.
+We will start by setting a unique name variable that we will use for creating Azure resources used in this challange, and a resource group for those resources to reside in. Select a location for the resource group.
 
 <details>
-  <summary>Azure CLI</summary>
+  <summary>Azure CLI using Bash</summary>
 
 ```shell
 # Generate a random name
@@ -189,6 +189,11 @@ New-AzResourceGroup -Name $resourceGroup -Location $location
 ```
 </details>
 <br>
+
+
+We've now prepared the development environment and created an Azure resource group. It is now time to provision some Azure services.  
+
+That will be done as part of [Challenge 2](challenge2.md)
 
 ## The challenges
 
