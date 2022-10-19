@@ -134,7 +134,7 @@ This will split your terminal into four separate views.
 
 Once `hey` has finished generating messages, the number of instances of the HTTP API application should start to scale up and eventually max out at 10 replicas. After the number of messages in the queue reduces to zero, you should see the number of replicas scale down and return to 1.
 
-> > **Tip**<br> 
+> **Tip**<br> 
 > To exit from tmux when you're finished, type `CTRL-b`, then `:` and then the command `kill-session`
 
 That concludes the deployment of the application. In upcoming challenges we will look at improving the DevOps and security capabilities of our solution. Next up is CI/CD deployment as part of [Challenge 5](challenge5.md)
@@ -145,3 +145,4 @@ That concludes the deployment of the application. In upcoming challenges we will
 - [Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps](challenge2.md)
 - [Challenge 3: Split traffic for controlled rollout](challenge3.md)
 - [Challenge 4: Scale Container Apps](challenge4.md)
+- [Challenge 5: Configure CI/CD for Container Apps](challenge5.md)

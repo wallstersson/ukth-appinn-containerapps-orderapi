@@ -39,7 +39,7 @@ The following image illustrates the steps in this challenge
 - [Monitor logs in Azure Container Apps with Log Analytics (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash)
 
 ## Solution
-- View the solution here: [Challenge 4 - Solution](solution-4.md)
+- View the solution here: [Challenge 4 - Solution](solution4.md)
 
 ## The challenges
 - [Challenge 1: Setup the environment](challenge1.md)

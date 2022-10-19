@@ -34,7 +34,7 @@ Verified that the following resources are deployed to the Azure resource group
 
 Verified application functionality
 - Make a _HTTP GET_ call to StoreApp API (https://storeapp.[your container app environment domain]/store) to fetch existing orders
-- Add and order by doing a _HTTP POST_ to HttpAPI (https://httpapi.[your container app environment domain]/data?message=[your message])
+- Add an order by doing a _HTTP POST_ to HttpAPI (https://httpapi.[your container app environment domain]/data?message=[your message])
 - Do another call to StoreApp API to verify that order was added
 - Potential issues detected and culprit located in the provided source code or templates.
 
