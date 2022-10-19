@@ -284,7 +284,6 @@ Here you should see one row with the text "This is a new log message!".
 You have now configured a simple CI/CD pipeline to automatically deploy code changes to the application.
 
 Next step is to enhance security by protecting our _HTTP API_ using _API Management_. That will be covered in [Challenge 6](challenge5.md)
-
 ## The challenges
 
 - [Challenge 1: Setup the environment](challenge1.md)
@@ -293,3 +292,4 @@ Next step is to enhance security by protecting our _HTTP API_ using _API Managem
 - [Challenge 4: Scale Container Apps](challenge4.md)
 - [Challenge 5: Configure CI/CD for Container Apps](challenge5.md)
 - [Challenge 6: Protect Container App with API Management](challenge6.md)
+- [Challenge 7: Enable Container App authentication](challenge7.md)

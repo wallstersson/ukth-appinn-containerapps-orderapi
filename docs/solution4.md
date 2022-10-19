@@ -89,7 +89,7 @@ Now let's see scaling in action. To do this, we will generate a large amount of 
 While the scaling script is running, you can also have this operations dashboard open to visually see the messages flowing through queue into the store. Get the dashboard URL and open in a browser.
 
 <details>
-  <summary>Bash</summary>
+  <summary>bash</summary>
 
 ```bash
 dashboardURL=https://dashboardapp.$(az containerapp env show -g $resourceGroup -n $containerAppEnv --query 'properties.defaultDomain' -o tsv)
@@ -146,3 +146,5 @@ That concludes the deployment of the application. In upcoming challenges we will
 - [Challenge 3: Split traffic for controlled rollout](challenge3.md)
 - [Challenge 4: Scale Container Apps](challenge4.md)
 - [Challenge 5: Configure CI/CD for Container Apps](challenge5.md)
+- [Challenge 6: Protect Container App with API Management](challenge6.md)
+- [Challenge 7: Enable Container App authentication](challenge7.md)

@@ -287,9 +287,12 @@ We've now fixed the code for you so that the message received is now actually be
 But maybe we should be cautious and make sure this new change is working as expected and therefore perform a controlled rollout of the new version so only a subset of the incoming requests hit the new version.
 
 That will be done as part of [Challenge 3](challenge3.md)
-
 ## The challenges
 
-[Challenge 1: Setup the environment](challenge1.md)
-[Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps](challenge2.md)
-[Challenge 3: Split traffic for controlled rollout](challenge3.md)
+- [Challenge 1: Setup the environment](challenge1.md)
+- [Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps](challenge2.md)
+- [Challenge 3: Split traffic for controlled rollout](challenge3.md)
+- [Challenge 4: Scale Container Apps](challenge4.md)
+- [Challenge 5: Configure CI/CD for Container Apps](challenge5.md)
+- [Challenge 6: Protect Container App with API Management](challenge6.md)
+- [Challenge 7: Enable Container App authentication](challenge7.md)

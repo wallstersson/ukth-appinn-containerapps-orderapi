@@ -3,12 +3,6 @@
 ## Solution steps
 We will provision API Management with a self hosted gateway and create a new Container App with internal ingress. The self hosted gateway will be created as a new Container App _apim_ and expose the API with external egress.
 
-
-> **Note**<br> 
-> If you are not able to create a service principal in the Azure Active Directory that is connected to your subscription, you will unfortunately not be able to do this part of the lab
-
-
-
 ### Create an API Management service with self hosted gateway
 First API Management must be created using the _Developer_ SKU (_Consumption_ SKU doesn't support SHGW). This takes 30-45 minutes. 
 

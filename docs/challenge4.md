@@ -40,10 +40,13 @@ The following image illustrates the steps in this challenge
 
 ## Solution
 - View the solution here: [Challenge 4 - Solution](solution4.md)
-
 ## The challenges
+
 - [Challenge 1: Setup the environment](challenge1.md)
-- [Challenge 2: Deploy and troubleshoot a Container Apps environment](challenge2.md)
-- [Challenge 3: Perform blue-green deployment with Container App traffic splitting](challenge3.md)
+- [Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps](challenge2.md)
+- [Challenge 3: Split traffic for controlled rollout](challenge3.md)
 - [Challenge 4: Scale Container Apps](challenge4.md)
+- [Challenge 5: Configure CI/CD for Container Apps](challenge5.md)
+- [Challenge 6: Protect Container App with API Management](challenge6.md)
+- [Challenge 7: Enable Container App authentication](challenge7.md)
 
