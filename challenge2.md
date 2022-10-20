@@ -33,8 +33,8 @@ Verified that the following resources are deployed to the Azure resource group
 - Container Registry
 
 Verified application functionality
-- Make a _HTTP GET_ call to Store App API (https://storeapp.[your container app environment domain]/store) to fetch existing orders
-- Add an order by doing a _HTTP POST_ to HttpAPI (https://httpapi.[your container app environment domain]/data?message=[your message])
+- Make a _HTTP GET_ call to _Store App_ API (https://storeapp.[your container app environment domain]/store) to fetch existing orders
+- Add an order by doing a _HTTP POST_ to _HTTP API_ (https://httpapi.[your container app environment domain]/data?message=[your message])
 - Do another call to Store App API to verify that order was added
 - Potential issues detected and culprit located in the provided source code or templates.
 
@@ -45,6 +45,7 @@ Redeploy application
 ## Helpful links
 - [az containerapp env show (learn.microsoft.com)](https://learn.microsoft.com/en-us/cli/azure/containerapp/env?view=azure-cli-latest#az-containerapp-env-show)
 - [curl manual (curl.se)](https://curl.se/docs/manual.html)
+- [Invoke-RestMethod (learn.microsoft.com)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-restmethod?view=powershell-7.2)
 - [Monitor logs in Azure Container Apps with Log Analytics (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash)
 
 ## Solution

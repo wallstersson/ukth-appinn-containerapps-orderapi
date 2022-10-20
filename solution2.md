@@ -103,11 +103,31 @@ $storeURL="https://storeapp.$((Get-AzContainerAppManagedEnv -ResourceGroupName $
 </details>
 <br>
 
-Let's see what happens if we call the URL of the store with curl.
-
-```shell
+Let's see what happens if we call the URL
+<details>
+  <summary>Bash</summary>
+  
+```bash
 curl $storeURL
+
 ```
+
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+
+```PowerShell
+
+Invoke-RestMethod -Url $storeUrl
+
+```
+
+  </summary>
+</details>
+<br>
+
 
 The response you should see is `[]` which means no data was returned. Either there has been no orders submitted or something's not working correctly.
 
@@ -139,21 +159,58 @@ $dataURL="https://storeapp.$((Get-AzContainerAppManagedEnv -ResourceGroupName $r
 
 Add a new order test item using a HTTP Post
 
-```shell
+<details>
+  <summary>Bash</summary>
+  
+```bash
 curl -X POST $dataURL?message=item1
 ```
 Verify that the store API returns the order
 
-```shell
+```bash
 curl $storeURL
 ```
 
 Still no orders are returned. 
 
 Finally, check the queue length using the data API
-```shell
+```bash
 curl $dataURL
 ```
+
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+
+```PowerShell
+
+Invoke-RestMethod -Url "$dataURL?message=item1" -Method Post
+
+```
+Verify that the store API returns the order
+
+```PowerShell
+
+Invoke-RestMethod $storeURL
+
+```
+
+Still no orders are returned. 
+
+Finally, check the queue length using the data API
+```PowerShell
+
+Invoke-RestMethod $dataURL
+
+```
+
+  </summary>
+</details>
+<br>
+
+
 You should see the following output indicating that the queue is not read correctly.
 > `Queue 'demoqueue' has 1 message`
 
@@ -239,9 +296,29 @@ Let's see what happens when we access the queue application using the data URL
 
 > As before, you can type `echo $dataURL` to get the URL of the HTTP API and then open it in a browser if you prefer
 
-``` bash
+<details>
+  <summary>Bash</summary>
+  
+```bash
 curl $dataURL
+
 ```
+
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+
+```PowerShell
+
+Invoke-RestMethod -Url $dataUrl
+
+```
+
+  </summary>
+</details>
+<br>
 
 The result tells us that `demoqueue` has no messages:
 
@@ -249,15 +326,57 @@ The result tells us that `demoqueue` has no messages:
 
 This indicates that the messages are now processed. Now add another test message.
 
+<details>
+  <summary>Bash</summary>
+  
 ```bash
 curl -X POST $dataURL?message=item2
 ```
 
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+
+```PowerShell
+
+Invoke-RestMethod -Url "$dataURL?message=item2" -Method Post
+
+```
+
+
+  </summary>
+</details>
+<br>
+
+
+
 Ok, let's check our Store URL and see what happens this time
 
+<details>
+  <summary>Bash</summary>
+  
 ```bash
 curl $storeURL
+
 ```
+
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+
+```PowerShell
+
+Invoke-RestMethod -Url $storeUrl
+
+```
+
+  </summary>
+</details>
+<br>
 
 > `[{"id":"a85b038a-a01f-4f25-b468-238d0c8a3676","message":"24a1f5ed-2407-4f9d-a6f9-5664436f1c28"},{"id":"f2b4c93a-63e5-4a4d-8a66-1fa4d4b958fe","message":"5940cf24-8c55-4b38-938a-10d9351d5d2b"}]`
 
@@ -287,6 +406,7 @@ We've now fixed the code for you so that the message received is now actually be
 But maybe we should be cautious and make sure this new change is working as expected and therefore perform a controlled rollout of the new version so only a subset of the incoming requests hit the new version.
 
 That will be done as part of [Challenge 3](challenge3.md)
+
 ## The challenges
 
 - [Challenge 1: Setup the environment](challenge1.md)
