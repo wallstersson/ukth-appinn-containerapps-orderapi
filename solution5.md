@@ -218,7 +218,7 @@ Dive into the logs and locate the “latestRevisionName”, then go to the Azure
 ### Do a code change in QueueReader App and push changes to GitHub repository
 Now it’s time to do a code change and validate that it has been deployed.
 
-Open _VS Code --> queuereaderapp folder --> Open Worker.cs_ and scroll down to line number 51, where we are writing to the log.  
+Open _VS Code --> queuereaderapp folder --> Open Worker.cs_ and scroll down to line number 58, where we are writing to the log.  
 
 ```c#
 logger.LogInformation($"Message ID: '{message.MessageId}', contents: '{message.Body?.ToString()}'");

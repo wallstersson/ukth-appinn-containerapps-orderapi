@@ -17,8 +17,7 @@ A number of other options are available
 
 The solution instructions includes examples of both Bash and Powershell. For managing Azure resources there are examples provided for both Azure CLI and Azure PowerShell.
 
-
-
+If you are running locally on your machine but still want to have a similar developer experience as Codespaces, it is possbile to use the dev container in VS Code. This is done by installing an extension, you can find instructions for how to install and use the `extension` here - [https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
 ### Fork the repository
 1. Log in to [GitHub](https://github.com) with your GitHub account
@@ -74,7 +73,7 @@ cd ukth-appinn-containerapps-orderapi
 We will be using the `hey` load testing tool later on.
 
 <details>
-  <summary>Using Homebrew (included in Codespaces)</summary>
+  <summary>Using Homebrew (included in Codespaces and Dev Container running in VS Code)</summary>
   If you are using Codespaces, the container includes Homebrew, so you can install `hey` like this:
 
 ```bash

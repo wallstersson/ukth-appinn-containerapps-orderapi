@@ -1,4 +1,4 @@
-# Challenge 6: Configure CI/CD for Container Apps
+# Challenge 6: Protecting our HTTP API using API Management
 The self-hosted gateway is an optional, containerized version of the default managed gateway included in every API Management service. It's useful for scenarios such as placing gateways in the same environments where you host your APIs. Use the self-hosted gateway to improve API traffic flow and address API security and compliance requirements.
 
 Now it's time to deploy our _HTTP API_ behind _API Management self hosted gateway_ to protect it from direct internet access.

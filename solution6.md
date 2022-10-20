@@ -1,4 +1,4 @@
-# Challenge 5: Solution
+# Challenge 6: Solution
 
 ## Solution steps
 We will provision API Management with a self hosted gateway and create a new Container App with internal ingress. The self hosted gateway will be created as a new Container App _apim_ and expose the API with external egress.
@@ -91,7 +91,7 @@ Deploy Container Apps and create API Management configuration.
   <summary>Azure CLI using bash</summary>
 
 ```bash
-az deployment group create -g $resourceGroup -f v5_template.bicep -p apiManagementName=${name}-apim containerAppsEnvName=$containerAppEnv storageAccountName=$storageaccount selfHostedGatewayToken="$gwtoken"
+az deployment group create -g $resourceGroup -f v5_template.bicep -p apiManagementName=${name}-apim containerAppsEnvName=$containerAppEnv storageAccountName=$storageaccount selfHostedGatewayToken="$gwtoken" AppInsights_Name=$appInsights
 
 ```
 
@@ -102,7 +102,7 @@ az deployment group create -g $resourceGroup -f v5_template.bicep -p apiManageme
   <summary>PowerShell</summary>
 
 ```PowerShell
-New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v5_deployment' -TemplateFile .\v5_template.bicep -apiManagementName "$name-apim" -containerAppsEnvName $containerAppEnv -storageAccountName $storageAccount -selfHostedGatewayToken ""$gwToken""
+New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v5_deployment' -TemplateFile .\v5_template.bicep -apiManagementName "$name-apim" -containerAppsEnvName $containerAppEnv -storageAccountName $storageAccount -selfHostedGatewayToken ""$gwToken"" -AppInsights_Name=$appInsights
 
 ```
 

@@ -18,7 +18,7 @@ Make sure you navigate in your shell to the root folder of the lab files (exampl
 
 ```bash
 # Reuse the random name created in previous challenge
-name = <your random name>
+# name = should be created in challenge 1
 
 # Set variables for the rest of the lab
 resourceGroup=${name}-rg
@@ -49,7 +49,7 @@ az deployment group create \
 
 ```PowerShell
 # Reuse the random name created in previous challenge
-$name = <your random name>
+# $name = should be created in challenge 1
 
 # Set variables for the rest of the lab
 $resourceGroup="$name-rg"
@@ -271,8 +271,7 @@ az deployment group create \
   --parameters \
     ContainerApps_Environment_Name=$containerAppEnv \
     LogAnalytics_Workspace_Name=$logAnalytics \
-    AppInsights_Name=$appInsights \
-    Container_Registry_Name=$acr 
+    AppInsights_Name=$appInsights
 
 ```
 
