@@ -261,7 +261,8 @@ curl -X POST $dataURL?message=mynewlogmessage
   <summary>PowerShell</summary>
 
 ```PowerShell
-curl -X POST "$($dataURL)?message=mynewlogmessage"
+Invoke-RestMethod -Url "$($dataURL)?message=mynewlogmessage" -Method Post
+
 ```
 
   </summary>

@@ -181,7 +181,8 @@ curl -X POST -H "X-API-Key:$apikey" $apimURL?message=apimitem1
   <summary>PowerShell</summary>
 
 ```PowerShell
-curl -X POST -X POST -H "X-API-Key:$apikey" "$($apimURL)?message=apimitem1"
+
+Invoke-RestMethod -Url "$($apimURL)?message=apimitem1" -Method Post -Headers @{'X-API-Key' = $apimUrl}
 
 ```
 

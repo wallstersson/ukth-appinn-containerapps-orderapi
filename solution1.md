@@ -3,6 +3,22 @@
 ## Solution steps
 To setup the environment you will fork the respository and then use Azure CLI or Azure PowerShell to create a resource group. You will also install some tools used in later challenges.
 
+### Determine and configure your development environment
+The challenges in this repo can be completed using a wide range of configuration option. The selection of toolset is much down to your skills, preference and which options are technically feasible for you.
+
+The steps in this lab has primarily been developed and tested using _GitHub Codespaces_ with Azure CLI on Bash. This repos contains [devcontainer](.devcontainer/devcontainer.json) file which sets up the Ubundu container environment in Codespaces. This options gives the most friction free experience.
+
+A number of other options are available
+- Docker Desktop
+- Directly on local machines
+- PowerShell or Bash (or other shell of choice like ZSH, fish, [insert your favorite shell here])
+- Azure PowerShell or AZ CLI (locally, in container or Azure Cloudshell)
+- Linux, Mac or Windows with Subsystem for Linux 
+
+The solution instructions includes examples of both Bash and Powershell. For managing Azure resources there are examples provided for both Azure CLI and Azure PowerShell.
+
+
+
 
 ### Fork the repository
 1. Log in to [GitHub](https://github.com) with your GitHub account
@@ -110,6 +126,8 @@ Install-Module Az.App
   <br>
 
 ## Log in to Azure 
+We will perform a number of Azure related tasks using command line. Log in with the account with permissions to create Azure resources in a subscription.
+
 <details>
   <summary>Azure CLI</summary>
 

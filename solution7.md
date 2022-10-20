@@ -76,8 +76,6 @@ Accept the consent and you will be redirected to the Dashboard App
 ![](/images/easyauth-dashboardapp.png)
 
 
-
-
 You have now enabled Azure AD authentication for  _Dashboard App_ Container App.
 
 This concludes the series of challenge. You can Follow the instructions in [Clean up](cleanup.md) to remove Azure resources created in this hackaton.

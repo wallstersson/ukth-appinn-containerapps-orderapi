@@ -31,6 +31,7 @@ The following image illustrates the steps in this challenge
 ## Helpful links
 - [Revisions in Azure Container Apps (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/revisions)
 - [curl manual (curl.se)](https://curl.se/docs/manual.html)
+- [Invoke-RestMethod (learn.microsoft.com)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-restmethod?view=powershell-7.2)
 - [Monitor logs in Azure Container Apps with Log Analytics (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash)
 
 ## Solution

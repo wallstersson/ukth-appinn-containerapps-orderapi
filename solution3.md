@@ -68,9 +68,29 @@ New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v3_deployment
 
 With the third iteration of our applications deployed, let's try and send another order.
 
+<details>
+  <summary>Bash</summary>
+  
 ```bash
 curl -X POST $dataURL?message=item3
 ```
+
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+
+```PowerShell
+
+Invoke-RestMethod -Url "$dataURL?message=item3" -Method Post
+
+```
+
+
+  </summary>
+</details>
+<br>
 
 And let's check the Store application again to see if the messages have been received
 
@@ -87,9 +107,31 @@ curl -X POST $dataURL?message=item3
 
 And let's check the Store application again to see if the messages have been received
 
+<details>
+  <summary>Bash</summary>
+  
 ```bash
 curl $storeURL | jq
+
 ```
+
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+
+```PowerShell
+
+Invoke-RestMethod -Url $storeUrl
+
+```
+
+  </summary>
+</details>
+<br>
+
+
 
 ```json
 [
@@ -134,7 +176,7 @@ curl $storeURL | jq
 hey -m POST -n 25 -c 1 "$dataURL?message=hello"
 
 # Verify orders in StoreApp
-curl $storeURL 
+Invoke-RestMethod -Url $storeURL 
 
 ```
 

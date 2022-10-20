@@ -8,10 +8,14 @@ The following image illustrates the steps in this challenge
 ![](images/challenge-1-overview.png)
 
 ## Main objectives
-- Fork the repository and clone the repository in the development environment of choice. Some options are
+- Determine and configure your development environment, shell and toolset to use. Some options are
   - GitHub Codespaces
   - Docker Desktop
-  - Directly on local machine
+  - Directly on local machines
+  - PowerShell or Bash (or other shell of choice like ZSH, fish, [insert your favorite shell here])
+  - Azure PowerShell or AZ CLI (locally, in container or Azure Cloudshell)
+  - Linux, Mac or Windows with Subsystem for Linux 
+- Fork the repository and make a clone 
 - Install load test tool
 - Log in to Azure and create a resource group
 
@@ -30,9 +34,13 @@ The following image illustrates the steps in this challenge
 - A resource group created
 
 ## Helpful links
+- [Azure PowerShell Documentation (learn.microsoft.com)](https://learn.microsoft.com/en-us/powershell/azure/?view=azps-8.3.0)
+- [Azure Command-Line Interface (CLI) documentation (learn.microsoft.com)](https://learn.microsoft.com/en-us/cli/azure/)
 - [Fork a repo (github.com)](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
 - [hey (github.com)](https://github.com/rakyll/hey)
 - [az containerapp (learn.microsoft.com)](https://learn.microsoft.com/en-us/cli/azure/containerapp?view=azure-cli-latest)
+- [New-AzResourceGroup (learn.microsoft.com)](https://learn.microsoft.com/en-us/powershell/module/az.resources/new-azresourcegroup?view=azps-8.3.0)
+- [az group create (learn.microsoft.com)](https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create)
 
 ## Solution
 - View the solution here: [Challenge 1 - Solution](solution1.md)

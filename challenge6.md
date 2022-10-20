@@ -42,6 +42,7 @@ The following image illustrates the steps in this challenge
 ## Helpful links
 - [API Management self-hosted gateway overview (learn.microsoft.com)](https://docs.microsoft.com/en-us/azure/api-management/self-hosted-gateway-overview)
 - [curl manual (curl.se)](https://curl.se/docs/manual.html)
+- [Invoke-RestMethod (learn.microsoft.com)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-restmethod?view=powershell-7.2)
 - [Monitor logs in Azure Container Apps with Log Analytics (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash)
 
 ## Solution
