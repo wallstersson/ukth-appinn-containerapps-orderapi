@@ -1,4 +1,4 @@
-# Challenge 2: Split traffic for controlled rollout
+# Challenge 3: Split traffic for controlled rollout
 Azure Container Apps implements container app versioning by creating revisions. More than one revision can be active at the same time with the possibility to split external HTTP traffic between the active revisions. This is useful in our scenario where we recently made updates to our Order HTTP API code and we want to make sure this change is working as expected.
 
 You will make needed changes to the configuration to support splitting traffic 80/20 between two revisions of the HTTP API.

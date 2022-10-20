@@ -45,9 +45,7 @@ az deployment group create \
   --parameters \
     ContainerApps_Environment_Name=$containerAppEnv \
     LogAnalytics_Workspace_Name=$logAnalytics \
-    AppInsights_Name=$appInsights \
-    Container_Registry_Name=$acr 
-
+    AppInsights_Name=$appInsights
 ```
 
   </summary>
