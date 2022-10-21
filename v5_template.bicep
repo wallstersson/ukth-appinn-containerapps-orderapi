@@ -4,6 +4,7 @@ param location string = resourceGroup().location
 param apiManagementName string 
 param containerAppsEnvName string 
 param storageAccountName string 
+param AppInsights_Name string
 @secure()
 param selfHostedGatewayToken string
 
@@ -27,6 +28,10 @@ resource apim 'Microsoft.ApiManagement/service@2021-08-01' existing =  {
 // StorageAccount
 resource stg 'Microsoft.Storage/storageAccounts@2021-01-01' existing =  { 
   name: storageAccountName
+}
+
+resource AppInsights_Name_resource 'Microsoft.Insights/components@2020-02-02' existing = {
+  name: AppInsights_Name
 }
 
 // APIM Self hosted gateway (SHGW) 

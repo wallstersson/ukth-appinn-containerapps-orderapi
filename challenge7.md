@@ -32,7 +32,7 @@ The following image illustrates the steps in this challenge
 - [Enable authentication and authorization in Azure Container Apps with Azure Active Directory (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/authentication-azure-active-directory)
 
 ## Solution
-- View the solution here: [Challenge 6 - Solution](solution7.md)
+- View the solution here: [Challenge 7 - Solution](solution7.md)
 
 ## The challenges
 

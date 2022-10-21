@@ -6,7 +6,7 @@ We will perform a controlled rollout of the new version and split the incoming n
 We'll deploy the first version of the application to Azure and use the _curl_ tool to test the application. We will then use _Log Analytics_ to troubleshoot the application.
 
 ### Add traffic split to the HTTP API app by changing existing Bicep template
-To implement the traffic split, in [v3_template.bicep](v3_template.bicep) add the traffic section on your httpapi app and save the file.
+To implement the traffic split, in [v3_template.bicep](v3_template.bicep) add the traffic section on your *httpapi* app and save the file.
 
 ```json
   ingress: {
@@ -45,8 +45,7 @@ az deployment group create \
   --parameters \
     ContainerApps_Environment_Name=$containerAppEnv \
     LogAnalytics_Workspace_Name=$logAnalytics \
-    AppInsights_Name=$appInsights \
-    Container_Registry_Name=$acr 
+    AppInsights_Name=$appInsights
 
 ```
 
