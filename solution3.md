@@ -88,7 +88,7 @@ curl $storeURL | jq
   },
   {
     "id": "807fd951-7213-4fd7-8a6f-df3a8e064ed9",
-    "message": "05/20/2022 22:31:26 +00:00 -- item3"
+    "message": "f5a52f7a-67db-4ada-bdab-baa8189af700 -- item3"
   },
 ]
 ```
