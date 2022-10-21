@@ -1,7 +1,7 @@
 # Challenge 5: Solution
 
 ## Solution steps
-Until now we have worked with docker images that others have created, now we are going to do a code change on our own code base and push the changes to Container Apps using GitHub Actions.
+Until now we have worked with docker images that others have created, now we are going to do a code change on our own code base and push the changes to Container Apps using _GitHub Actions_.
 We are now going to use a Azure CLI command to create a GitHub Action that builds the _Queue Reader_ C# project and pushes the image to _Azure Container Registry_ and deploys it to our Container App.
 
 First, we need to create a service principal that can be used from the GitHub action to deploy the changes we are introducing.
@@ -102,7 +102,7 @@ $repoUrl="https://github.com/<OWNER>/ukth-appinn-containerapps-orderapi"
 Now we need to get information about the Azure Container Registry that we created in the beginning.
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 
 ```bash
@@ -132,7 +132,7 @@ $acrSecret=$acrCreds.Password
 Now all the variables are set so we can run the Azure CLI command, make sure you are located at the root of the repo and run the following command.
 
 <details>
-  <summary>Azure CLI using bash</summary>
+  <summary>Azure CLI using Bash</summary>
 
 
 ```bash
@@ -210,7 +210,7 @@ Dive into the logs and locate the _latestRevisionName_, then go to the Azure por
 ### Do a code change in QueueReader App and push changes to GitHub repository
 Now it’s time to do a code change and validate that it has been deployed.
 
-Open _VS Code --> queuereaderapp folder --> Open Worker.cs_ and scroll down to line number 58, where we are writing to the log.  
+Open _VS Code_ --> _queuereaderapp_ folder --> Open _Worker.cs_ and scroll down to line number **58**, where we are writing to the log.  
 
 ```c#
 logger.LogInformation($"Message ID: '{message.MessageId}', contents: '{message.Body?.ToString()}'");
@@ -220,7 +220,7 @@ Below this line insert the following code.
 ```c#
 logger.LogInformation("This is a new log message!");
 ```
-Then open the Terminal in VS Code and make sure you are in the “queuereaderapp” folder. Run this command.
+Then open the Terminal in VS Code and make sure you are in the _queuereaderapp_ folder. Run this command.
 
 ```bash
 dotnet build . 

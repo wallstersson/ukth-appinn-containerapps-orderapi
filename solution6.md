@@ -1,7 +1,7 @@
 # Challenge 6: Solution
 
 ## Solution steps
-We will provision API Management with a self hosted gateway and create a new Container App with internal ingress. The self hosted gateway will be created as a new Container App _apim_ and expose the API with external egress.
+We will provision _API Management_ with a self hosted gateway and create a new Container App with internal ingress. The self hosted gateway will be created as a new Container App _apim_ and expose the API with external egress.
 
 ### Create an API Management service with self hosted gateway
 First API Management must be created using the _Developer_ SKU (_Consumption_ SKU doesn't support SHGW). **This takes 30-45 minutes**. 
@@ -38,7 +38,7 @@ Go to the API Management instance in Azure portal and click on _Gateways_ in the
 Example: gwtoken="GatewayKey gw-01&202206230....."
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 gwtoken="[Paste value from the Token field]"
@@ -112,7 +112,7 @@ Now API Management SHGW has been deployed as a Container App inside of Container
 API Management has protected the API using an API key so this needs to be retrieved. Got to the Azure portal --> _Subscriptions_ --> Choose the bottom row with the scope _Service_ --> on the right click the three dots --> Show/hide keys --> Copy the _Primary Key_ value
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 apikey=[Paste the value of the primary key]
@@ -135,7 +135,7 @@ $apikey="[Paste the value of the primary key]"
 Retrieve the url of the SHGW in Container Apps. 
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 apimURL=https://apim.$(az containerapp env show -g $resourceGroup -n ${name}-env --query 'properties.defaultDomain' -o tsv)/api/data

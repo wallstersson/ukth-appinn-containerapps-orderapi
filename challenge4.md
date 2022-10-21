@@ -17,7 +17,7 @@ The following image illustrates the steps in this challenge
 ## Activities
 - Examine scaling rules for _HTTP API_ and _Queue Reader_ app by reviewing existing [Bicep template v4](v4_template.bicep)
 - Deploy the updated Bicep template
-- Review QueueReader application logs in _Log Analytics_
+- Review _Queue Reader_ application logs in _Log Analytics_
 - Run script to bulk add orders via _HTTP API_ and watch revisions
 - View order count in store and queue using _Dashboard App_
 
@@ -26,9 +26,8 @@ The following image illustrates the steps in this challenge
 ## Definition of done
 - Reviewed and understood scaling rules for _HTTP API_ and _Queue Reader_ Container Apps by examine existing [Bicep template v4](v4_template.bicep)
 - Deployed [Bicep template v4](v4_template.bicep) including scaling rules
-- Run [script](scripts\appwatch.sh) to bulk add 10000 orders via HTTP API and watch replica scaling using _tmux_
+- Run [script](scripts\appwatch.sh) to bulk add 10000 orders via _HTTP API_ and watch replica scaling using _tmux_
 - Verified logs in Log Analytics for _Queue Reader_ application that all orders are correctly using newest revision
-- Added 10000 orders and observed replica scaling using [script](scripts\appwatch.sh).
 - Examined order count in queue and store using Dashboard App (https://dashboardapp.[your container app environment domain])
  
 

@@ -1,5 +1,5 @@
 # Challenge 6: Protecting our HTTP API using API Management
-The self-hosted gateway is an optional, containerized version of the default managed gateway included in every API Management service. It's useful for scenarios such as placing gateways in the same environments where you host your APIs. Use the self-hosted gateway to improve API traffic flow and address API security and compliance requirements.
+The self-hosted gateway is an optional, containerized version of the default managed gateway included in every _API Management_ service. It's useful for scenarios such as placing gateways in the same environments where you host your APIs. Use the self-hosted gateway to improve API traffic flow and address API security and compliance requirements.
 
 Now it's time to deploy our _HTTP API_ behind _API Management self hosted gateway (SHGW)_ to protect it from direct internet access.
 
@@ -22,7 +22,7 @@ The following image illustrates the steps in this challenge
 
 ## Activities
 
-- Create an API Management service with self hosted gateway. Grab the Gateway token from the provisioned SHGW
+- Create an _API Management_ service with self hosted gateway. Grab the _Gateway token_ from the provisioned SHGW
 - Create a new Container App _HTTP API 2 (httpapi2)_ based on the same image used in previous challenge
 - Configure an internal ingress for _httpapi2_ Container App 
 - Create a new Container App _apim_ based on an image provided by Microsoft

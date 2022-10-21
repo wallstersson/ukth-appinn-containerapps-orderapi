@@ -1,5 +1,5 @@
 # Challenge 5: Configure CI/CD for Container Apps
-Azure Container Apps allows you to use GitHub Actions to publish revisions to your Container App. As commits are pushed to your GitHub repository, a GitHub Actions is triggered which updates the container image in the container registry. Once the container is updated in the registry, Azure Container Apps creates a new revision based on the updated container image.
+Azure Container Apps allows you to use _GitHub Actions_ to publish revisions to your Container App. As commits are pushed to your GitHub repository, a GitHub Action is triggered which updates the container image in the container registry. Once the container is updated in the registry, Azure Container Apps creates a new revision based on the updated container image.
 
 Until now we have worked with docker images that others have created, now we are going to do a code change on our own code base and push the changes to Container Apps using GitHub Actions. We are now going to use a Azure CLI command to create a GitHub Action that builds the _Queue Reader_ C# project and pushes the image to _Azure Container Registry_ and deploys it to our Container App.
 
@@ -17,7 +17,7 @@ The following image illustrates the steps in this challenge
 ## Activities
 - Create an Azure AD service principal with contributor permissions on your resource group 
 - Create a _Personal Access Token (PAT)_ in GitHub with permissions to your repository and GitHub actions
-- Add a GitHub Actions workflow to your repository to deploy a container app
+- Add a _GitHub Actions_ workflow to your repository to deploy a container app
 - Do a code change in _Queue Reader_ app and push changes to GitHub repository
 - Add a new order using _HTTP API_
 - Verify that the code change has been deployed by looking in _Log Analytics_

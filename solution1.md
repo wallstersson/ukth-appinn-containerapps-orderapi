@@ -124,7 +124,6 @@ az extension add --name containerapp
 ```
 
   </details>
-
   <br>
 
 <details>
@@ -155,7 +154,6 @@ Install-Module Az
 Install-Module Az.App
 ```
   </details>
-
   <br>
 
 ## Log in to Azure 
@@ -220,7 +218,7 @@ az group create --name $resourceGroup --location $location -o table
 
 <details>
   <summary>Azure PowerShell</summary>
-  
+
 ```PowerShell
 # Generate a random name
 $name = -join ((97..122) | Get-Random -Count 7 | % {[char]$_})

@@ -279,11 +279,11 @@ New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -Name 'v2_deploy
 
 Let's see what happens when we access the queue application using the data URL
 
-> As before, you can type `echo $dataURL` to get the URL of the HTTP API and then open it in a browser if you prefer
-
 <details>
   <summary>Bash</summary>
-  
+
+> As before, you can type `echo $dataURL` to get the URL of the HTTP API and then open it in a browser if you prefer
+
 ```bash
 curl $dataURL
 
@@ -351,11 +351,13 @@ curl $storeURL
 
 ```PowerShell
 Invoke-RestMethod $storeUrl
+
 ```
-> id                                   message
-> --                                   -------
-> a62d0fa5-26dd-449a-8c16-2e897c6ac4c1 9b4d6594-0c06-476f-81dd-1c9a7120d60b
-> 81bfcaa4-8436-4201-a626-d0db70c69c6a f529835e-7a79-47b5-85a1-f16e608ee202
+id                                   message
+--                                   -------
+a62d0fa5-26dd-449a-8c16-2e897c6ac4c1 9b4d6594-0c06-476f-81dd-1c9a7120d60b
+a2be1546-7290-49df-9f1b-9dd567b7ce3b f5a52f7a-67db-4ada-bdab-baa8189af700
+```
 
   </summary>
 </details>

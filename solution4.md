@@ -121,7 +121,7 @@ $dashboardURL="https://dashboardapp$((Get-AzContainerAppManagedEnv -ResourceGrou
 </details>
 <br>
 
-To demonstrate this, a script that uses the `tmux` command is provided in the `scripts` folder of this repository. Run the following commands:
+To demonstrate this, a script that uses the `tmux` command is provided in the _scripts_ folder of this repository. Run the following commands:
 
 ```bash
 cd scripts

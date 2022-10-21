@@ -1,9 +1,6 @@
 # Cleanup
 Deleting the Azure resource group should remove everything associated with this hackaton.
 
-```bash
-az group delete -g $resourceGroup --no-wait -y
-```
 
 <details>
   <summary>Azure CLI using bash</summary>
@@ -20,9 +17,7 @@ az group delete -g $resourceGroup --no-wait -y
   <summary>PowerShell</summary>
 
 ```PowerShell
-
 Remove-AzResourceGroup -Name $resourceGroup -Force -AsJob
-
 ```
 
   </summary>

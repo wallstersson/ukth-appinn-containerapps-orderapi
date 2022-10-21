@@ -5,9 +5,11 @@ We will nable Azure AD authentication for _Dashboard App_ Container App using Az
 
 ### Enable Azure AD authentication
 Navigate to the Container Dashboard App in [Azure Portal](https://portal.azure.com) and select the _Authentication_ blade.
+
 ![](/images/easyauth-authentication.png)
 
 Select _Add Identity provider_ and select _Microsoft_ as the identity provider
+
 ![](/images/easyauth-identityprovider.png)
 
 > **Note**<br>
@@ -18,8 +20,11 @@ In the _Add identity provider_ page change the name of the identity provider to 
 Leave the other options with default values
 ![](/images/easyauth-identityprovideroptions.png)
 
+
 Select _Next: Permissions_.
+
 ![](/images/easyauth-permission.png)
+
 Accept the default values and click _Add_
 
 The _Dashboard App_ is now configured with Azure AD Authentication.
@@ -33,7 +38,7 @@ If you don't have that variable available you can get it via the following comma
 
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 dashboardURL=https://dashboardapp.$(az containerapp env show -g $resourceGroup -n $containerAppEnv --query 'properties.defaultDomain' -o tsv)

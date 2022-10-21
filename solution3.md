@@ -28,7 +28,7 @@ To implement the traffic split, in [v3_template.bicep](v3_template.bicep) add th
 Effectively, we're asking for 80% of traffic to be sent to the current version (revision) of the application and 20% to be sent to the new version that's about to be deployed.
 
 ### Deploy updated Bicep template
-Once again, let's repeat the deployment command from earlier, now using version 2 of the HTTP API application and with traffic splitting configured
+Once again, let's repeat the deployment command from earlier, now using version 2 of the _HTTP API_ application and with traffic splitting configured
 
 
 <details>
@@ -123,6 +123,7 @@ curl $storeURL | jq
 
 <details>
   <summary>PowerShell</summary>
+
 ```PowerShell
 Invoke-RestMethod  "$($dataURL)?message=item3" -Method Post
 ```
@@ -138,7 +139,7 @@ id                                   message
 a62d0fa5-26dd-449a-8c16-2e897c6ac4c1 9b4d6594-0c06-476f-81dd-1c9a7120d60b
 a2be1546-7290-49df-9f1b-9dd567b7ce3b f5a52f7a-67db-4ada-bdab-baa8189af700--item3
 ```
-  </summary>
+</summary>
 </details>
 <br>
 
@@ -148,7 +149,7 @@ a2be1546-7290-49df-9f1b-9dd567b7ce3b f5a52f7a-67db-4ada-bdab-baa8189af700--item3
 
 That's looking better. We can still see the original message, but we can also now see our "item3" message with the date and time appended to it.
 
-We configured traffic splitting, so let's see that in action. First we will need to send multiple messages to the application. We can use the load testing tool `hey` to do that.
+We configured traffic splitting, so let's see that in action. First we will need to send multiple messages to the application. We can use the load testing tool _hey_ to do that.
 
 <details>
   <summary>Bash</summary>

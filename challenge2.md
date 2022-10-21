@@ -1,5 +1,5 @@
 # Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps
-You will deploy a Container Apps Environment with related services such as Log Analytics and a Storage Account for the queue. At the end of this challenge you will verify that the application works and troubleshoot potential issues. 
+You will deploy a Container Apps Environment with related services such as _Log Analytics_ and a _Storage Account_ for the queue. At the end of this challenge you will verify that the application works and troubleshoot potential issues. 
 
 The following image illustrates the steps in this challenge
 
@@ -7,16 +7,16 @@ The following image illustrates the steps in this challenge
 
 
 ## Main objectives
-- Deploy a Container Apps environment with related resources
+- Deploy a _Container Apps Environment_ with related resources
 - Test the APIs deployed as Container Apps
 - Troubleshoot and find issues in the deployed Container Apps
 
 ## Activities
 
 - Deploy Azure resources using an existing [Bicep template](v1_template.bicep)
-- Call the _Store App API_ go get existing orders
+- Call the _Store App_ go get existing orders
 - Call the _HTTP API_ to add a new order and verify it is being added
-- Troubleshoot potential issues using Log Analytics and determine the reason 
+- Troubleshoot potential issues using _Log Analytics_ and determine the reason 
 - Deploy a corrected version of the solution
 
 
