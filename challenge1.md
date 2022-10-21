@@ -12,7 +12,7 @@ The following image illustrates the steps in this challenge
   - GitHub Codespaces
   - Docker Desktop
   - Directly on local machines
-  - PowerShell or Bash (or other shell of choice like ZSH, fish, [insert your favorite shell here])
+  - PowerShell or Bash (or other shell of choice like ZSH, fish, _insert your favorite shell here_)
   - Azure PowerShell or AZ CLI (locally, in container or Azure Cloudshell)
   - Linux, Mac or Windows with Subsystem for Linux 
 - Fork the repository and make a clone 
@@ -22,15 +22,15 @@ The following image illustrates the steps in this challenge
 ## Activities
 - Create a fork of this repository
 - Clone the repository in a development environment
-- Install the `hey` load testing tool
+- Install the _hey_ load testing tool
 - Install Azure CLI extension for Container Apps
 - Log in to Azure
-- Create a resource group with the naming convention "[six letters]-rg" in an Azure region of choice 
+- Create a resource group with the naming convention "[seven letters]-rg" in an Azure region of choice 
 
 ## Definition of done
 - Repository forked to your GitHub account
 - Repository cloned
-- `hey` tool installed and verified
+- _hey_ tool installed and verified
 - A resource group created
 
 ## Helpful links

@@ -1,22 +1,21 @@
 # Challenge 1: Solution
 
 ## Solution steps
-To setup the environment you will fork the respository and then use Azure CLI or Azure PowerShell to create a resource group. You will also install some tools used in later challenges.
+To setup the environment you will fork this respository and then use Azure CLI or Azure PowerShell to create a resource group. You will also install some tools used in later challenges.
 
 ### Determine and configure your development environment
-The challenges in this repo can be completed using a wide range of configuration option. The selection of toolset is much down to your skills, preference and which options are technically feasible for you.
+The challenges in this repo can be completed using a wide range of configuration options. The selection of toolset is much down to your skills, preference and which options are technically feasible for you.
 
-The steps in this lab has primarily been developed and tested using _GitHub Codespaces_ with Azure CLI on Bash. This repos contains [devcontainer](.devcontainer/devcontainer.json) file which sets up the Ubundu container environment in Codespaces. This options gives the most friction free experience.
+The steps in this lab have primarily been developed and tested using _GitHub Codespaces_ with Azure CLI on Bash. This repos contains a [devcontainer](.devcontainer/devcontainer.json) file which sets up the Ubundu container environment in Codespaces. This option gives the most friction free experience.
 
 A number of other options are available
 - Docker Desktop
-- Directly on local machines
-- PowerShell or Bash (or other shell of choice like ZSH, fish, [insert your favorite shell here])
+- Directly on local machine
+- PowerShell or Bash (or other shell of choice like ZSH, fish, _insert your favorite shell here_)
 - Azure PowerShell or AZ CLI (locally, in container or Azure Cloudshell)
 - Linux, Mac or Windows with Subsystem for Linux 
 
-The solution instructions includes examples of both Bash and Powershell. For managing Azure resources there are examples provided for both Azure CLI and Azure PowerShell.
-
+The solution instructions include examples of both Bash and PowerShell. For managing Azure resources there are examples provided for both Azure CLI and Azure PowerShell.
 
 
 
@@ -49,12 +48,13 @@ This command will take 5-10 minutes to set up the development container and clon
 
 ![](images/codespaces-progress.png)
 
-Once the Codespaces finished deployment you will have a browser based VSCode instance available with a cloned repository. Take a few minutes to familarize yourself with the source code and starter files. 
+Once the Codespaces finished deployment you will have a browser based VS Code instance available with a cloned repository. Take a few minutes to familarize yourself with the source code and starter files. 
 
 ![](images/codespaces-done.png)
 
 > **Note**<br>
-> By default Codespaces time out after 30 minutes of inactivity. After that time any shell variables you defined will be gone and needs to be added again. All changes on files will be persisted between restarts though. An option can be to add variables and commands to a script file to be used between timeout restarts.
+> By default, Codespaces time out after 30 minutes of inactivity. After that time any shell variables you defined will be gone and needs to be added again. All changes on files will be persisted between restarts though. A recommendation is to add variables and commands to a script file to be used between timeout restarts. This is also valuable if you restart the shell or switch between Bash and PowerShell.
+
 
 </details>
 
@@ -71,11 +71,11 @@ cd ukth-appinn-containerapps-orderapi
 <br>
 
 ### Install hey load testing tool
-We will be using the `hey` load testing tool later on.
+We will be using the _hey_ load testing tool later on.
 
 <details>
   <summary>Using Homebrew (included in Codespaces)</summary>
-  If you are using Codespaces, the container includes Homebrew, so you can install `hey` like this:
+  If you are using Codespaces, the container includes Homebrew, so you can install _hey_ like this:
 
 ```bash
 brew install hey
@@ -84,16 +84,13 @@ brew install hey
 <details>
   <summary>Manual installation</summary>
 
-  If you are using an environment other than Codespaces, you can find installation instructions for `hey` here - [https://github.com/rakyll/hey](https://github.com/rakyll/hey)
+  If you are using an environment other than Codespaces, you can find installation instructions for _hey_ here - [https://github.com/rakyll/hey](https://github.com/rakyll/hey)
 
 </details>
 <br>
 
 ## Install Azure command line extension for Container Apps
-
-
 You will need to install an extension to work with Container Apps.
-
 
 Run the following command in a shell:
 
@@ -113,13 +110,11 @@ az extension add --name containerapp
   <summary>Azure PowerShell</summary>
 
 ```PowerShell
-
-# If you are using Codespaces the Azure PowerShell _Az_ modules are not pre-installed.
+# If you are using Codespaces the Azure PowerShell (Az) modules are not pre-installed.
 Install-Module Az
 
 # Install Container Apps module
 Install-Module Az.App
-
 ```
   </details>
 
@@ -140,7 +135,6 @@ az account show
 
 # In case not the right subscription
 az account set -s <subscription-id>
-
 ```
 
   </details>
@@ -158,8 +152,7 @@ Connect-AzAccount -UseDeviceAuthentication
 Get-AzContext
 
 # In case not the right subscription
-Select-AzSubscription -SubscriptionId <subscription-id>
-
+Select-AzSubscription -SubscriptionName <subscription-name>
 ```
   </details>
 
@@ -183,7 +176,6 @@ location=northeurope
 
 # Create Resource Group
 az group create --name $resourceGroup --location $location -o table
-
 ```
 </details>
 <br>
@@ -203,7 +195,6 @@ $location="northeurope"
 
 # Create Resource Group
 New-AzResourceGroup -Name $resourceGroup -Location $location
-
 ```
 </details>
 <br>

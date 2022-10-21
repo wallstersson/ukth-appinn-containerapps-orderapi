@@ -1,6 +1,6 @@
 # Hands-on with Container Apps
 
-The purpose of this repo is to help you quickly get hands-on with Container Apps. It is meant to be consumed either through GitHub codespaces or through a local Dev Container. The idea being that everything you need from tooling to runtimes is already included in the Dev Container so it should be as simple as executing a run command.
+The purpose of this repo is to help you quickly get hands-on with Container Apps. It is meant to be consumed either through _GitHub Codespaces_ or through a local _Development Container_ (dev container). The idea being that everything you need from tooling to runtimes is already included in the dev container so it should be as simple as executing a run command.
 
 ## Scenario
 
@@ -16,14 +16,14 @@ With a microservices architecture, Container Apps offer a simple experience that
 
 In this lab you will see how to:
 
-1. Deploy the solution and configuration through IaaC, no need to understand Kubernetes
+1. Deploy the solution and configuration through Infrastructure as Code (IaaC), no need to understand Kubernetes
 2. Ability to troubleshoot using built-in logging capability with Azure Monitor (Log Analytics)
-3. Out of the box Telemetry with Dapr + Azure Monitor (Log Analytics)
+3. Use out of the box telemetry with Dapr + Azure Monitor (Log Analytics)
 4. Ability to split http traffic when deploying a new version
 5. Ability to configure scaling to meet usage needs
-6. Configure CI/CD deployment to private Azure Container Registry using GitHub Actions
-7. Use API Management with Container Apps.
-8. Enable Authentication for a Container App using Easy Auth.
+6. Configure CI/CD deployment to private Azure Container Registry using _GitHub Actions_
+7. Use API Management with Container Apps
+8. Enable Authentication for a Container App using _Easy Auth_.
 
 Once this lab is completed you should have an Architecture that looks something like the diagram below.
 
@@ -84,3 +84,4 @@ Changes in this fork
 * Arash Rassoulpour 
 * Anders Heden 
 * Kristofer Nissbrandt
+* Johan Kardell
