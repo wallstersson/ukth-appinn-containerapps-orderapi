@@ -6,6 +6,11 @@ The following image illustrates the steps in this challenge
 ![](images/challenge-2-overview.png)
 
 
+> **Note**<br>
+> There is currently a soft limit of maximum 5 Container Apps Environments per subscription per region.
+> If you are more than five lab participants using the same subscription you need to select different locations to avoid hitting the limit.
+
+
 ## Main objectives
 - Deploy a _Container Apps Environment_ with related resources
 - Test the APIs deployed as Container Apps
@@ -46,6 +51,7 @@ Redeploy application
 - [curl manual (curl.se)](https://curl.se/docs/manual.html)
 - [Invoke-RestMethod (learn.microsoft.com)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-restmethod?view=powershell-7.2)
 - [Monitor logs in Azure Container Apps with Log Analytics (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash)
+- [Quotas for Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/quotas)
 
 ## Solution
 - View the solution here: [Challenge 2 - Solution](solution2.md)
