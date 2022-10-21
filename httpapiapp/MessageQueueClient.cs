@@ -35,7 +35,7 @@ public class MessageQueueClient
     }
 
     public async Task<bool> SendMessage(string message) => await SendMessageToQueue(Guid.NewGuid().ToString());
-    public async Task<bool> SendMessageV2(string message) => await SendMessageToQueue($"{Guid.NewGuid()}--{message}");
+    //public async Task<bool> SendMessage(string message) => await SendMessageToQueue($"{Guid.NewGuid()}--{message}");
 
     private async Task<bool> SendMessageToQueue(string message)
     {

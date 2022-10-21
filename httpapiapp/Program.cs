@@ -1,5 +1,6 @@
 using HttpApi;
 using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.MapGet("/data", async (MessageQueueClient client) => Results.Text(await client.GetQueueInfo()));
-app.MapPost("/data", async (MessageQueueClient client, string message) =>
+app.MapPost("/data", async (MessageQueueClient client, [FromQuery]string message) =>
 {
     var messageSent = await client.SendMessage(message);
     return messageSent ? 
