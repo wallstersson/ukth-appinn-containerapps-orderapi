@@ -1,23 +1,27 @@
 # Challenge 2: Deploy Container Apps Environment and troubleshoot Container Apps
-You will deploy a container apps environment with related services such as Log Analytics and a Storage Account for the queue. At the end of this challenge you will verify that the application works and troubleshoot potential issues. 
-
+You will deploy a Container Apps Environment with related services such as _Log Analytics_ and a _Storage Account_ for the queue. At the end of this challenge you will verify that the application works and troubleshoot potential issues. 
 
 The following image illustrates the steps in this challenge
 
 ![](images/challenge-2-overview.png)
 
 
+> **Note**<br>
+> There is currently a soft limit of maximum 5 Container Apps Environments per subscription per region.
+> If you are more than five lab participants using the same subscription you need to select different locations to avoid hitting the limit.
+
+
 ## Main objectives
-- Deploy a Container Apps environment with related resources
-- Test APIs deployed as Container Apps
+- Deploy a _Container Apps Environment_ with related resources
+- Test the APIs deployed as Container Apps
 - Troubleshoot and find issues in the deployed Container Apps
 
 ## Activities
 
 - Deploy Azure resources using an existing [Bicep template](v1_template.bicep)
-- Call the StoreApp API go get existing orders
-- Call the HttpApi to add a new order and verify it is being added
-- Troubleshoot potential issues using Log Analytics and determine the reason. 
+- Call the _Store App_ go get existing orders
+- Call the _HTTP API_ to add a new order and verify it is being added
+- Troubleshoot potential issues using _Log Analytics_ and determine the reason 
 - Deploy a corrected version of the solution
 
 
@@ -35,8 +39,8 @@ Verified that the following resources are deployed to the Azure resource group
 Verified application functionality
 - Make a _HTTP GET_ call to _Store App_ API (https://storeapp.[your container app environment domain]/store) to fetch existing orders
 - Add an order by doing a _HTTP POST_ to _HTTP API_ (https://httpapi.[your container app environment domain]/data?message=[your message])
-- Do another call to Store App API to verify that order was added
-- Potential issues detected and culprit located in the provided source code or templates.
+- Do another call to _Store App_ API to verify that order was added
+- Potential issues detected and culprit located in the provided source code or templates
 
 Redeploy application
 - Fix issue in source code or templates
@@ -47,6 +51,7 @@ Redeploy application
 - [curl manual (curl.se)](https://curl.se/docs/manual.html)
 - [Invoke-RestMethod (learn.microsoft.com)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-restmethod?view=powershell-7.2)
 - [Monitor logs in Azure Container Apps with Log Analytics (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/container-apps/log-monitoring?tabs=bash)
+- [Quotas for Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/quotas)
 
 ## Solution
 - View the solution here: [Challenge 2 - Solution](solution2.md)

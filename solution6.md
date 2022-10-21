@@ -1,10 +1,10 @@
 # Challenge 6: Solution
 
 ## Solution steps
-We will provision API Management with a self hosted gateway and create a new Container App with internal ingress. The self hosted gateway will be created as a new Container App _apim_ and expose the API with external egress.
+We will provision _API Management_ with a self hosted gateway and create a new Container App with internal ingress. The self hosted gateway will be created as a new Container App _apim_ and expose the API with external egress.
 
 ### Create an API Management service with self hosted gateway
-First API Management must be created using the _Developer_ SKU (_Consumption_ SKU doesn't support SHGW). This takes 30-45 minutes. 
+First API Management must be created using the _Developer_ SKU (_Consumption_ SKU doesn't support SHGW). **This takes 30-45 minutes**. 
 
 <details>
   <summary>Azure CLI using bash</summary>
@@ -21,7 +21,7 @@ az deployment group create -g $resourceGroup -f apim.bicep -p apiManagementName=
   <summary>PowerShell</summary>
 
 ```PowerShell
-New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'apim_deployment' -TemplateFile .\apim.bicep -apiManagementName "$name-apim"
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -Name 'apim_deployment' -TemplateFile .\apim.bicep -apiManagementName "$name-apim"
 
 ```
 
@@ -33,12 +33,12 @@ After the script has finished an API Management instance and a SHGW has been cre
 
 ### Deploy Container Apps and create API Management configuration
 
-Go to the API Management instance in Azure portal and click on "Gateways" in the menu. A gateway called "gw-01" has been created. Click on the gateway name --> Deployment --> Copy everything in the field called "Token" and set the variable "gwtoken", the value must be inside "" double quotes. 
+Go to the API Management instance in Azure portal and click on _Gateways_ in the menu. A gateway called _gw-01_ has been created. Click on the gateway name --> _Deployment_ --> Copy everything in the field called _Token_ and set the variable "gwtoken", the value must be inside "" double quotes. 
 
 Example: gwtoken="GatewayKey gw-01&202206230....."
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 gwtoken="[Paste value from the Token field]"
@@ -53,7 +53,6 @@ gwtoken="[Paste value from the Token field]"
 
 ```PowerShell
 $gwtoken="[Paste value from the Token field]"
-
 ```
 
   </summary>
@@ -67,7 +66,6 @@ In the Azure portal, go to the resource group you have been working with and loc
 
 ```bash
 storageaccount=[Enter the name of the storageaccount]
-
 ```
 
   </summary>
@@ -78,7 +76,6 @@ storageaccount=[Enter the name of the storageaccount]
 
 ```PowerShell
 $storageaccount="[Enter the name of the storageaccount]"
-
 ```
 
   </summary>
@@ -92,7 +89,6 @@ Deploy Container Apps and create API Management configuration.
 
 ```bash
 az deployment group create -g $resourceGroup -f v5_template.bicep -p apiManagementName=${name}-apim containerAppsEnvName=$containerAppEnv storageAccountName=$storageaccount selfHostedGatewayToken="$gwtoken" AppInsights_Name=$appInsights
-
 ```
 
   </summary>
@@ -102,8 +98,7 @@ az deployment group create -g $resourceGroup -f v5_template.bicep -p apiManageme
   <summary>PowerShell</summary>
 
 ```PowerShell
-New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v5_deployment' -TemplateFile .\v5_template.bicep -apiManagementName "$name-apim" -containerAppsEnvName $containerAppEnv -storageAccountName $storageAccount -selfHostedGatewayToken ""$gwToken"" -AppInsights_Name=$appInsights
-
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -Name 'v5_deployment' -TemplateFile .\v5_template.bicep -apiManagementName "$name-apim" -containerAppsEnvName $containerAppEnv -storageAccountName $storageAccount -selfHostedGatewayToken ""$gwToken"" -AppInsights_Name=$appInsights 
 ```
 
   </summary>
@@ -112,16 +107,15 @@ New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v5_deployment
 
 ### Verify external access to new Container App
 
-Now API Management SHGW has been deployed as a Container App inside of Container Apps and a new Container App called "httpapi2" has been created with an internal ingress which means that is not exposed to the internet.
+Now API Management SHGW has been deployed as a Container App inside of Container Apps and a new Container App called _httpapi2_ has been created with an internal ingress which means that is not exposed to the internet.
 
-API Management has protected the API using an API key so this needs to be retrieved. Got to the Azure portal --> Subscriptions --> Choose the bottom row with the scope "Service" --> on the right click the three dots --> Show/hide keys --> Copy the Primary Key value
+API Management has protected the API using an API key so this needs to be retrieved. Got to the Azure portal --> _Subscriptions_ --> Choose the bottom row with the scope _Service_ --> on the right click the three dots --> Show/hide keys --> Copy the _Primary Key_ value
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 apikey=[Paste the value of the primary key]
-
 ```
 
   </summary>
@@ -132,7 +126,6 @@ apikey=[Paste the value of the primary key]
 
 ```PowerShell
 $apikey="[Paste the value of the primary key]"
-
 ```
 
   </summary>
@@ -142,7 +135,7 @@ $apikey="[Paste the value of the primary key]"
 Retrieve the url of the SHGW in Container Apps. 
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 apimURL=https://apim.$(az containerapp env show -g $resourceGroup -n ${name}-env --query 'properties.defaultDomain' -o tsv)/api/data
@@ -156,8 +149,7 @@ apimURL=https://apim.$(az containerapp env show -g $resourceGroup -n ${name}-env
   <summary>PowerShell</summary>
 
 ```PowerShell
-$apimURL="https://apim.$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).Id)/api/data"
-
+$apimURL="https://apim.$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).DefaultDomain)/api/data"
 ```
 
   </summary>
@@ -182,7 +174,7 @@ curl -X POST -H "X-API-Key:$apikey" $apimURL?message=apimitem1
 
 ```PowerShell
 
-Invoke-RestMethod -Url "$($apimURL)?message=apimitem1" -Method Post -Headers @{'X-API-Key' = $apimUrl}
+Invoke-RestMethod "$($apimURL)?message=apimitem1" -Method Post -Headers @{'X-API-Key' = $apikey}
 
 ```
 
@@ -200,8 +192,6 @@ ContainerAppConsoleLogs_CL
 | project TimeGenerated, Log_s
 | order by TimeGenerated desc
 ```
-
-
 
 You have now protected _HTTP API_ Container App behind API Management.
 

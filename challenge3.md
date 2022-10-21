@@ -1,7 +1,7 @@
 # Challenge 3: Split traffic for controlled rollout
-Azure Container Apps implements container app versioning by creating revisions. More than one revision can be active at the same time with the possibility to split external HTTP traffic between the active revisions. This is useful in our scenario where we recently made updates to our Order HTTP API code and we want to make sure this change is working as expected.
+Azure Container Apps implements container app versioning by creating revisions. More than one revision can be active at the same time with the possibility to split external HTTP traffic between the active revisions. This is useful in our scenario where we recently made updates to our Order _HTTP API_ code and we want to make sure this change is working as expected.
 
-You will make needed changes to the configuration to support splitting traffic 80/20 between two revisions of the HTTP API.
+You will make needed changes to the configuration to support splitting traffic 80/20 between two revisions of the _HTTP API_.
 
 The following image illustrates the steps in this challenge
 
@@ -15,17 +15,16 @@ The following image illustrates the steps in this challenge
 
 
 ## Activities
-
-- Add traffic split to the HTTP API app by changing existing [Bicep template v3](v3_template.bicep)
+- Add traffic split to the _HTTP API_ app by changing existing [Bicep template v3](v3_template.bicep)
 - Deploy updated Bicep template
-- Run `hay` tool to bulk add orders via HTTP API
-- Verify that traffic is distributed between HTTP API Container App revisions 
+- Run _hay_ tool to bulk add orders via _HTTP API_
+- Verify that traffic is distributed between _HTTP API_ Container App revisions 
 
 
 ## Definition of done
-- Deployed traffic splitting with ratio 80/20 between blue and green revisions of HTTP API Container App
-- Bulk add 25 orders HTTP API (https://httpapi.[your container app environment domain]/data?message=[your message])
-- Verify logs in Log Analytics for QueueReader application that approximately 20 % of the calls include your actual message and approximately 80 % still have the GUID message from the earlier revision.
+- Deployed traffic splitting with ratio 80/20 between blue and green revisions of _HTTP API_ Container App
+- Bulk add 25 orders to _HTTP API_ (https://httpapi.[your container app environment domain]/data?message=[your message])
+- Verify logs in Log Analytics for _Queue Reader_ application that approximately 20 % of the calls include your actual message and approximately 80 % still have the GUID message from the earlier revision.
  
 
 ## Helpful links
