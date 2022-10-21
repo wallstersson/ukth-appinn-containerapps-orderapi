@@ -8,7 +8,7 @@ We'll deploy the first version of the application to Azure and invoke some APIs 
 ### Add traffic split to the HTTP API app by changing existing Bicep template
 To implement the traffic split, in [v3_template.bicep](v3_template.bicep) add the traffic section on your _httpapi_ app and save the file.
 
-```json
+```bicep
   ingress: {
         external: true
         targetPort: 80

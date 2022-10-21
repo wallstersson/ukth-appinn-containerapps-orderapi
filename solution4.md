@@ -7,7 +7,7 @@ Our application is now verified using blue-green deployment as part of [challeng
 ### Examine scaling rules
 Review scaling rules added to _HTTP API (httpapi)_ and _Queue Reader (queuereader)_ Container Apps by examining existing [Bicep template v4](v4_template.bicep)
 
-```json
+```bicep
     ]
       scale: {
         minReplicas: 0

@@ -124,8 +124,7 @@ az extension add --name containerapp
 ```
 
   </details>
-  <br>
-
+ 
 <details>
   <summary>Azure PowerShell</summary>
 
@@ -174,8 +173,6 @@ az account set -s <subscription-id>
 ```
 
   </details>
-
-  <br>
 
 <details>
   <summary>Azure PowerShell</summary>

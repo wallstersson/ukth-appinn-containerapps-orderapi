@@ -351,6 +351,7 @@ curl $storeURL
 
 ```PowerShell
 Invoke-RestMethod $storeUrl
+```
 
 ```
 id                                   message

@@ -13,7 +13,7 @@ First, we need to create a service principal that can be used from the GitHub ac
 
 ### Create an Azure AD service principal
 <details>
-  <summary>Azure CLI using bash</summary>
+  <summary>Azure CLI using Bash</summary>
 
 ```bash
 az ad sp create-for-rbac \
