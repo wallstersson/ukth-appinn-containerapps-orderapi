@@ -205,7 +205,7 @@ Let's do some troubleshooting.
 ### Troubleshoot and redeploy application
 ContainerApps integrates with _Application Insights_ and _Log Analytics_. In the Azure Portal, go to the Log Analytics workspace in the resource group we're using for this lab and run the following query to view the logs for the _queuereader_ application.
 
-```text
+```kusto
 ContainerAppConsoleLogs_CL
 | where ContainerAppName_s has "queuereader" and ContainerName_s has "queuereader"
 | top 100 by TimeGenerated

@@ -7,7 +7,7 @@ We will provision _API Management_ with a self hosted gateway and create a new C
 First API Management must be created using the _Developer_ SKU (_Consumption_ SKU doesn't support SHGW). **This takes 30-45 minutes**. 
 
 <details>
-  <summary>Azure CLI using bash</summary>
+  <summary>Azure CLI using Bash</summary>
 
 ```bash
 az deployment group create -g $resourceGroup -f apim.bicep -p apiManagementName=${name}-apim
@@ -62,7 +62,7 @@ $gwtoken="[Paste value from the Token field]"
 In the Azure portal, go to the resource group you have been working with and locate the name of the storageaccount that has been created. Set the storageaccount variable.  
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 storageaccount=[Enter the name of the storageaccount]
@@ -85,7 +85,7 @@ $storageaccount="[Enter the name of the storageaccount]"
 Deploy Container Apps and create API Management configuration. 
 
 <details>
-  <summary>Azure CLI using bash</summary>
+  <summary>Azure CLI using Bash</summary>
 
 ```bash
 az deployment group create -g $resourceGroup -f v5_template.bicep -p apiManagementName=${name}-apim containerAppsEnvName=$containerAppEnv storageAccountName=$storageaccount selfHostedGatewayToken="$gwtoken" AppInsights_Name=$appInsights
@@ -185,7 +185,7 @@ Invoke-RestMethod "$($apimURL)?message=apimitem1" -Method Post -Headers @{'X-API
 
 Verify that it works in Log Analytics.
 
-```text
+```kusto
 ContainerAppConsoleLogs_CL
 | where ContainerAppName_s has "queuereader" and ContainerName_s has "queuereader"
 | where Log_s has "Message"

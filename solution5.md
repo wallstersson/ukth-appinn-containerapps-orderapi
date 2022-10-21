@@ -263,7 +263,7 @@ Invoke-RestMethod "$($dataURL)?message=mynewlogmessage" -Method Post
 
 Validate the change by looking in _Log Analytics_.
 
-```text
+```kusto
 ContainerAppConsoleLogs_CL
 | where ContainerAppName_s has "queuereader" and ContainerName_s has "queuereader"
 | where Log_s has "Message"

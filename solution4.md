@@ -88,7 +88,7 @@ Invoke-RestMethod $dataUrl
 
 As before, we can check the application log files in Log Analytics to see what messages are being received
 
-```text
+```kusto
 ContainerAppConsoleLogs_CL
 | where ContainerAppName_s has "queuereader" and ContainerName_s has "queuereader"
 | where Log_s has "Message"
@@ -101,7 +101,7 @@ Now let's see scaling in action. To do this, we will generate a large amount of 
 While the scaling script is running, you can also have this operations dashboard open to visually see the messages flowing through queue into the store. Get the dashboard URL and open in a browser.
 
 <details>
-  <summary>bash</summary>
+  <summary>Bash</summary>
 
 ```bash
 dashboardURL=https://dashboardapp.$(az containerapp env show -g $resourceGroup -n $containerAppEnv --query 'properties.defaultDomain' -o tsv)
