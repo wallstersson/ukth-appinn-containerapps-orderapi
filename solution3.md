@@ -3,10 +3,10 @@
 ## Solution steps
 We will perform a controlled rollout of the new version and split the incoming network traffic so that only 20% of requests will be sent to the new version of the application.
 
-We'll deploy the first version of the application to Azure and use the _curl_ tool to test the application. We will then use _Log Analytics_ to troubleshoot the application.
+We'll deploy the first version of the application to Azure and invoke some APIs to test the application. We will then use _Log Analytics_ to validate that traffic split is working.
 
 ### Add traffic split to the HTTP API app by changing existing Bicep template
-To implement the traffic split, in [v3_template.bicep](v3_template.bicep) add the traffic section on your *httpapi* app and save the file.
+To implement the traffic split, in [v3_template.bicep](v3_template.bicep) add the traffic section on your _httpapi_ app and save the file.
 
 ```json
   ingress: {
@@ -28,7 +28,6 @@ To implement the traffic split, in [v3_template.bicep](v3_template.bicep) add th
 Effectively, we're asking for 80% of traffic to be sent to the current version (revision) of the application and 20% to be sent to the new version that's about to be deployed.
 
 ### Deploy updated Bicep template
-
 Once again, let's repeat the deployment command from earlier, now using version 2 of the HTTP API application and with traffic splitting configured
 
 
@@ -36,7 +35,6 @@ Once again, let's repeat the deployment command from earlier, now using version 
   <summary>Bash</summary>
 
 ```bash
-
 # Deploy Bicep template.
 az deployment group create \
   -g $resourceGroup \
@@ -45,8 +43,8 @@ az deployment group create \
   --parameters \
     ContainerApps_Environment_Name=$containerAppEnv \
     LogAnalytics_Workspace_Name=$logAnalytics \
-    AppInsights_Name=$appInsights
-
+    AppInsights_Name=$appInsights \
+    Location=$location
 ```
 
   </summary>
@@ -56,9 +54,7 @@ az deployment group create \
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v3_deployment' -TemplateFile .\v3_template.bicep -TemplateParameterFile v3_template.bicep -Location $location -ContainerApps_Environment_Name $containerAppEnv -LogAnalytics_Workspace_Name $logAnalytics -AppInsights_Name $appInsights -Container_Registry_Name $acr
-
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -Name 'v3_deployment' -TemplateFile .\v3_template.bicep -TemplateParameterFile .\v3_parametersbicep.json -Location $location -ContainerApps_Environment_Name $containerAppEnv -LogAnalytics_Workspace_Name $logAnalytics -AppInsights_Name $appInsights
 ```
 
   </summary>
@@ -81,9 +77,7 @@ curl -X POST $dataURL?message=item3
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-Invoke-RestMethod -Url "$dataURL?message=item3" -Method Post
-
+Invoke-RestMethod "$($dataURL)?message=item3" -Method Post
 ```
 
 
@@ -91,47 +85,26 @@ Invoke-RestMethod -Url "$dataURL?message=item3" -Method Post
 </details>
 <br>
 
-And let's check the Store application again to see if the messages have been received
 
-```bash
-curl $storeURL | jq
-```
 ### Add orders via HTTP API
 
 With the third iteration of our applications deployed, let's try and send another order.
 
+
+
+<details>
+  <summary>Bash</summary>
+
 ```bash
 curl -X POST $dataURL?message=item3
 ```
 
 And let's check the Store application again to see if the messages have been received
-
-<details>
-  <summary>Bash</summary>
   
 ```bash
 curl $storeURL | jq
 
 ```
-
-  </summary>
-</details>
-
-<details>
-  <summary>PowerShell</summary>
-
-```PowerShell
-
-Invoke-RestMethod -Url $storeUrl
-
-```
-
-  </summary>
-</details>
-<br>
-
-
-
 ```json
 [
    {
@@ -144,6 +117,31 @@ Invoke-RestMethod -Url $storeUrl
   },
 ]
 ```
+
+  </summary>
+</details>
+
+<details>
+  <summary>PowerShell</summary>
+```PowerShell
+Invoke-RestMethod  "$($dataURL)?message=item3" -Method Post
+```
+
+And let's check the Store application again to see if the messages have been received
+
+```PowerShell
+Invoke-RestMethod $storeUrl
+```
+```
+id                                   message
+--                                   -------
+a62d0fa5-26dd-449a-8c16-2e897c6ac4c1 9b4d6594-0c06-476f-81dd-1c9a7120d60b
+a2be1546-7290-49df-9f1b-9dd567b7ce3b f5a52f7a-67db-4ada-bdab-baa8189af700--item3
+```
+  </summary>
+</details>
+<br>
+
 
 > **Note**<br> 
 > The traffic split is 80/20 (80% old api, 20 % new api), so you might need to send a few messages before it hits our new revision of httpapi and appends the provided string to the message.
@@ -171,12 +169,10 @@ curl $storeURL | jq
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-hey -m POST -n 25 -c 1 "$dataURL?message=hello"
+hey -m POST -n 25 -c 1 "$($dataURL)?message=hello"
 
 # Verify orders in StoreApp
-Invoke-RestMethod -Url $storeURL 
-
+Invoke-RestMethod $storeURL
 ```
 
   </summary>
@@ -184,7 +180,7 @@ Invoke-RestMethod -Url $storeURL
 <br>
 
 ### Verify that traffic is distributed between Container App revisions 
-Let's check the application logs for the Queue Reader application
+Let's check the application logs for the _Queue Reader_ application
 
 ```text
 ContainerAppConsoleLogs_CL

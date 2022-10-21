@@ -41,6 +41,7 @@ The following image illustrates the steps in this challenge
 - [az containerapp (learn.microsoft.com)](https://learn.microsoft.com/en-us/cli/azure/containerapp?view=azure-cli-latest)
 - [New-AzResourceGroup (learn.microsoft.com)](https://learn.microsoft.com/en-us/powershell/module/az.resources/new-azresourcegroup?view=azps-8.3.0)
 - [az group create (learn.microsoft.com)](https://learn.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest#az-group-create)
+- [Install Bicep tools (learn.microsoft.com)](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install#install-manually)
 
 ## Solution
 - View the solution here: [Challenge 1 - Solution](solution1.md)

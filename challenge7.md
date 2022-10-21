@@ -1,7 +1,7 @@
 # Challenge 7: Enable Container App authentication
-Azure Container Apps provides built-in authentication and authorization features (sometimes referred to as "Easy Auth"), to secure your external ingress-enabled container app with minimal or no code.
+Azure Container Apps provides built-in authentication and authorization features (sometimes referred to as _Easy Auth_), to secure your external ingress-enabled container app with minimal or no code.
 
-Up until now we have allowed anonymous access to the application. Let's protect the Dashboard App web application with Azure AD authentication using the Easy Auth service built into Container Apps.
+Up until now we have allowed anonymous access to the application. Let's protect the Dashboard App web application with Azure AD authentication using the _Easy Auth_ service built into Container Apps.
 
 
 The following image illustrates the steps in this challenge
@@ -22,7 +22,7 @@ The following image illustrates the steps in this challenge
 
 ## Definition of done
 - Configured Azure AD authentication for _Dashboard App_ Container App
-- Browse _Dashboard App_ () and verify you are prompted for login
+- Browse _Dashboard App_ and verify you are prompted for login
 - Performed a successful login to view _Dashboard App_ (https://dashboardapp.[your container app environment domain]) 
 
  

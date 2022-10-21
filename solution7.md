@@ -1,30 +1,28 @@
 # Challenge 7: Solution
 
 ## Solution steps
-We will provision enable Azure AD authentication for _Dashboard App_ Container App using Azure Portal.
+We will nable Azure AD authentication for _Dashboard App_ Container App using Azure Portal.
 
 ### Enable Azure AD authentication
-
-
-Navigate to the Container Dashboard App in [Azure Portal](https://portal.azure.com) and select the Authentication blade.
+Navigate to the Container Dashboard App in [Azure Portal](https://portal.azure.com) and select the _Authentication_ blade.
 ![](/images/easyauth-authentication.png)
 
-Select Add Identity provider and select "Microsoft" as the identity provider
+Select _Add Identity provider_ and select _Microsoft_ as the identity provider
 ![](/images/easyauth-identityprovider.png)
 
 > **Note**<br>
 > Review the extensive list of identity provider options available
 
-In the "Add identity provider" page change the name of the identity provider to be prefixed with the unique name generated earlier in the lab (stored in variable `$name`)
+In the _Add identity provider_ page change the name of the identity provider to be prefixed with the unique name generated earlier in the lab (stored in variable `$name`)
 
 Leave the other options with default values
 ![](/images/easyauth-identityprovideroptions.png)
 
-Select "Next: Permissions".
+Select _Next: Permissions_.
 ![](/images/easyauth-permission.png)
-Accept the default values and click "Add"
+Accept the default values and click _Add_
 
-The Dashboard App is now configured with Azure AD Authentication.
+The _Dashboard App_ is now configured with Azure AD Authentication.
 
 
 ### Verify authentication
@@ -51,9 +49,8 @@ echo 'Open the URL in your browser of choice:' $dashboardURL
 
 ```PowerShell
 
-$dashboardURL="https://dashboardapp$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).Id)/"
+$dashboardURL="https://dashboardapp.$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).DefaultDomain)/"
 Write-Host "Open the URL in your browser of choice: $dashboardURL"
-
 ```
 
   </summary>
@@ -71,14 +68,14 @@ Next you will be presented with a consent dialog.
 
 ![](images/easyauth-consent.png)
 
-Accept the consent and you will be redirected to the Dashboard App
+Accept the consent and you will be redirected to the _Dashboard App_
 
 ![](/images/easyauth-dashboardapp.png)
 
 
 You have now enabled Azure AD authentication for  _Dashboard App_ Container App.
 
-This concludes the series of challenge. You can Follow the instructions in [Clean up](cleanup.md) to remove Azure resources created in this hackaton.
+This concludes the series of challenge. You can follow the instructions in [Clean up](cleanup.md) to remove Azure resources created in this hackaton.
 
 ## The challenges
 

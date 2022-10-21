@@ -1,17 +1,17 @@
 # Challenge 2: Solution
 
 ## Solution steps
-We'll deploy the first version of the application to Azure and use the _curl_ tool to test the application. We will then use _Log Analytics_ to troubleshoot the application.
+We'll deploy the first version of the application to Azure and invoke some APIs to test the application. We will then use _Log Analytics_ to troubleshoot the application.
 
 ### Deploy a Container Apps environment with related resources
-We'll deploy an initial version of the application to Azure. Review the [V1 Bicep template](v1_template.bicep) that contains IaC definitions for Azure Container Apps Environment and other related services such as Log Analytics and a Storage account for the queue. Notice the individual container app resources 
+We'll deploy an initial version of the application to Azure. Review the [V1 Bicep template](v1_template.bicep) that contains IaC definitions for Azure Container Apps Environment and other related services such as Log Analytics and a Storage account for the queue. Notice the individual container app resources. 
 
 
 Let's start by setting some variables that we will use for creating Azure resources in this lab.
 
 Use the `name` and `resourceGroup`  variables you created in [challenge 1](challenge1.md). 
 
-Make sure you navigate in your shell to the root folder of the lab files (example _c:\repos\mylab\ukth-appinn-containerapps-orderapi_)
+Make sure you navigate to the root folder of the lab files in your shell (example _c:\repos\mylab\ukth-appinn-containerapps-orderapi_)
 
 <details>
   <summary>Bash</summary>
@@ -37,8 +37,8 @@ az deployment group create \
     ContainerApps_Environment_Name=$containerAppEnv \
     LogAnalytics_Workspace_Name=$logAnalytics \
     AppInsights_Name=$appInsights \
-    Container_Registry_Name=$acr 
-
+    Container_Registry_Name=$acr \
+    Location=$location
 ```
 
   </summary>
@@ -59,8 +59,7 @@ $logAnalytics="$name-la"
 $appInsights="$name-ai"
 $acr="$($name)acr"
 
-New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v1_deployment' -TemplateFile .\v1_template.bicep -TemplateParameterFile v1_template.bicep -Location $location -ContainerApps_Environment_Name $containerAppEnv -LogAnalytics_Workspace_Name $logAnalytics -AppInsights_Name $appInsights -Container_Registry_Name $acr
-
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -Name 'v1_deployment' -TemplateFile .\v1_template.bicep -TemplateParameterFile .\v1_parametersbicep.json -Location $location -ContainerApps_Environment_Name $containerAppEnv -LogAnalytics_Workspace_Name $logAnalytics -AppInsights_Name $appInsights -Container_Registry_Name $acr
 ```
 
   </summary>
@@ -84,7 +83,6 @@ Now the application is deployed, let's verify that it works correctly. First det
 
 ```bash
 storeURL=https://storeapp.$(az containerapp env show -g $resourceGroup -n $containerAppEnv --query 'properties.defaultDomain' -o tsv)/store
-
 ```
 
   </summary>
@@ -94,9 +92,7 @@ storeURL=https://storeapp.$(az containerapp env show -g $resourceGroup -n $conta
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-$storeURL="https://storeapp.$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).Id)/store"
-
+$storeURL="https://storeapp.$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).DefaultDomain)/store"
 ```
 
   </summary>
@@ -104,12 +100,12 @@ $storeURL="https://storeapp.$((Get-AzContainerAppManagedEnv -ResourceGroupName $
 <br>
 
 Let's see what happens if we call the URL
+
 <details>
   <summary>Bash</summary>
   
 ```bash
 curl $storeURL
-
 ```
 
   </summary>
@@ -119,9 +115,7 @@ curl $storeURL
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-Invoke-RestMethod -Url $storeUrl
-
+Invoke-RestMethod $storeUrl
 ```
 
   </summary>
@@ -138,7 +132,6 @@ Try adding a new order to the order data API and verify that it is stored correc
   
 ```bash
 dataURL=https://httpapi.$(az containerapp env show -g $resourceGroup -n $containerAppEnv --query 'properties.defaultDomain' -o tsv)/data
-
 ```
 
   </summary>
@@ -148,9 +141,7 @@ dataURL=https://httpapi.$(az containerapp env show -g $resourceGroup -n $contain
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-$dataURL="https://storeapp.$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).Id)/data"
-
+$dataURL="https://httpapi.$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).DefaultDomain)/data"
 ```
 
   </summary>
@@ -185,16 +176,12 @@ curl $dataURL
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-Invoke-RestMethod -Url "$dataURL?message=item1" -Method Post
-
+Invoke-RestMethod "$($dataURL)?message=item1" -Method Post
 ```
 Verify that the store API returns the order
 
 ```PowerShell
-
 Invoke-RestMethod $storeURL
-
 ```
 
 Still no orders are returned. 
@@ -203,7 +190,6 @@ Finally, check the queue length using the data API
 ```PowerShell
 
 Invoke-RestMethod $dataURL
-
 ```
 
   </summary>
@@ -217,7 +203,7 @@ You should see the following output indicating that the queue is not read correc
 Let's do some troubleshooting.
 
 ### Troubleshoot and redeploy application
-ContainerApps integrates with Application Insights and Log Analytics. In the Azure Portal, go to the Log Analytics workspace in the resource group we're using for this demo and run the following query to view the logs for the `queuereader` application.
+ContainerApps integrates with _Application Insights_ and _Log Analytics_. In the Azure Portal, go to the Log Analytics workspace in the resource group we're using for this lab and run the following query to view the logs for the _queuereader_ application.
 
 ```text
 ContainerAppConsoleLogs_CL
@@ -229,6 +215,7 @@ ContainerAppConsoleLogs_CL
 
 You should see a some log entries that will likely contain the same information about the error. Drill down on one of them to reveal more. You should see something like the following:
 ![](images/loganalytics-queue-error.png)
+
 > "Log_s": "      Queue 'foo' does not exist. Waiting..",
 
 Looks like we have configured the wrong name for the queue. 
@@ -253,16 +240,17 @@ You will find it in the _queuereader_ container app configuration section.
             }
 ```
 
-The needed changes to the Bicep code is already made for you in [V2 Bicep template](v2_template.bicep).
+> **Note**<br>
+> The needed changes to the Bicep code is already made for you in [V2 Bicep template](v2_template.bicep).
+> You don't need to update any template code at this stage.
 
-Go ahead and deploy that version of the solution by repeating the same command from earlier but with the version 2 of the configuration
+Go ahead and deploy a new version of the solution by repeating the same command from earlier but with the version 2 of the configuration
 
 
 <details>
   <summary>Bash</summary>
 
 ```bash
-
 # Deploy Bicep template.
 az deployment group create \
   -g $resourceGroup \
@@ -271,8 +259,8 @@ az deployment group create \
   --parameters \
     ContainerApps_Environment_Name=$containerAppEnv \
     LogAnalytics_Workspace_Name=$logAnalytics \
-    AppInsights_Name=$appInsights
-
+    AppInsights_Name=$appInsights \
+    Location=$location
 ```
 
   </summary>
@@ -282,9 +270,7 @@ az deployment group create \
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-New-AzResourceGroupDeployment -ResourceGroup $resourceGroup -Name 'v2_deployment' -TemplateFile .\v2_template.bicep -TemplateParameterFile v2_template.bicep -Location $location -ContainerApps_Environment_Name $containerAppEnv -LogAnalytics_Workspace_Name $logAnalytics -AppInsights_Name $appInsights -Container_Registry_Name $acr
-
+New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -Name 'v2_deployment' -TemplateFile .\v2_template.bicep -TemplateParameterFile .\v2_parametersbicep.json -Location $location -ContainerApps_Environment_Name $containerAppEnv -LogAnalytics_Workspace_Name $logAnalytics -AppInsights_Name $appInsights
 ```
 
   </summary>
@@ -310,9 +296,7 @@ curl $dataURL
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-Invoke-RestMethod -Url $dataUrl
-
+Invoke-RestMethod $dataUrl
 ```
 
   </summary>
@@ -339,9 +323,7 @@ curl -X POST $dataURL?message=item2
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-Invoke-RestMethod -Url "$dataURL?message=item2" -Method Post
-
+Invoke-RestMethod "$($dataURL)?message=item2" -Method Post
 ```
 
 
@@ -360,7 +342,7 @@ Ok, let's check our Store URL and see what happens this time
 curl $storeURL
 
 ```
-
+> `[{"id":"a85b038a-a01f-4f25-b468-238d0c8a3676","message":"24a1f5ed-2407-4f9d-a6f9-5664436f1c28"},{"id":"f2b4c93a-63e5-4a4d-8a66-1fa4d4b958fe","message":"5940cf24-8c55-4b38-938a-10d9351d5d2b"}]`
   </summary>
 </details>
 
@@ -368,16 +350,17 @@ curl $storeURL
   <summary>PowerShell</summary>
 
 ```PowerShell
-
-Invoke-RestMethod -Url $storeUrl
-
+Invoke-RestMethod $storeUrl
 ```
+> id                                   message
+> --                                   -------
+> a62d0fa5-26dd-449a-8c16-2e897c6ac4c1 9b4d6594-0c06-476f-81dd-1c9a7120d60b
+> 81bfcaa4-8436-4201-a626-d0db70c69c6a f529835e-7a79-47b5-85a1-f16e608ee202
 
   </summary>
 </details>
 <br>
 
-> `[{"id":"a85b038a-a01f-4f25-b468-238d0c8a3676","message":"24a1f5ed-2407-4f9d-a6f9-5664436f1c28"},{"id":"f2b4c93a-63e5-4a4d-8a66-1fa4d4b958fe","message":"5940cf24-8c55-4b38-938a-10d9351d5d2b"}]`
 
 Ok, that's some progress but not the messages we sent in the query string. 
 
@@ -412,7 +395,12 @@ It looks like the code is set to send a GUID, not the message itself. Must have 
 public async Task<bool> SendMessage(string message) => await SendMessageToQueue($"{Guid.NewGuid()}--{message}");
 ...
 ```
-After we talked to the developer, we discovered that this has already been fixed and it has been pushed as an *v2* version of the *httpapi*. But maybe we should be cautious and make sure this new change is working as expected and therefore perform a controlled rollout of the new version so only a subset of the incoming requests hit the new version.
+After we talked to the developer, we discovered that this has already been fixed and it has been pushed as an *v2* version of the *httpapi*. 
+
+> **Note**<br>
+> You don't need to do the code change - it has already been done by a developer.
+
+But maybe we should be cautious and make sure this new change is working as expected and therefore perform a controlled rollout of the new version so only a subset of the incoming requests hit the new version.
 
 That will be done as part of [Challenge 3](challenge3.md)
 

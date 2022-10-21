@@ -2,7 +2,7 @@
 
 ## Solution steps
 Until now we have worked with docker images that others have created, now we are going to do a code change on our own code base and push the changes to Container Apps using GitHub Actions.
-We are now going to use a Azure CLI command to create a GitHub Action that builds the queuereader C# project and pushes the image to Azure Container Registry and deploys it to our Container App.
+We are now going to use a Azure CLI command to create a GitHub Action that builds the _Queue Reader_ C# project and pushes the image to _Azure Container Registry_ and deploys it to our Container App.
 
 First, we need to create a service principal that can be used from the GitHub action to deploy the changes we are introducing.
 
@@ -16,13 +16,11 @@ First, we need to create a service principal that can be used from the GitHub ac
   <summary>Azure CLI using bash</summary>
 
 ```bash
-
 az ad sp create-for-rbac \
   --name <SERVICE_PRINCIPAL_NAME> \
   --role "contributor" \
   --scopes /subscriptions/<SUBSCRIPTION_ID>/resourceGroups/<RESOURCE_GROUP_NAME> \
   --sdk-auth
-
 ```
 The return value from this command is a JSON payload, which includes the service principal's `tenantId`, `clientId`, and `clientSecret`.
 Set the variables in bash.
@@ -47,7 +45,6 @@ New-AzRoleAssignment -ApplicationId $sp.ApplicationId -RoleDefinitionName 'Contr
 $spClientId = $sp.ApplicationId
 $spClientSecret = $sp.PasswordCredentials.SecretText
 $tenantId = (Get-AzContext | Select-Object -ExpandProperty Tenant).Id
-
 ```
 
   </summary>
@@ -55,21 +52,20 @@ $tenantId = (Get-AzContext | Select-Object -ExpandProperty Tenant).Id
 <br>
 
 ### Create a Personal Access Token (PAT) in GitHub
-Now we need a GitHub Personal Access Token (PAT) so we can authenticate against GitHub from Azure CLI.
+Now we need a GitHub _Personal Access Token (PAT)_ so we can authenticate against GitHub from Azure CLI.
 
-Go to github.com --> Settings --> Developer Settings --> Personal access tokens Click on ”Generate new token” button.
+Go to _github.com --> Settings --> Developer Settings --> Personal access tokens_ and click on _Generate new token_ button.
  
 Password prompt might appear. Enter password.
 
-In the “Note” textbox enter a name for the PAT, such as “ca-pat”.
+In the _Note_ textbox enter a name for the PAT, such as _ca-pat_.
 Give the PAT the following scopes: 
--	repo (Full control of private repositories) 
--	workflows (Update GitHub Action workflows)
+-	_repo (Full control of private repositories)_ 
+-	_workflows (Update GitHub Action workflows)_
 
 ![pat](images/pat.png)
 
-
-Click “Generate token”, copy the generated token and assign the variable. 
+Click _Generate token_, copy the generated token and assign the variable. 
 
 <details>
   <summary>Bash</summary>
@@ -80,7 +76,6 @@ ghToken=[Replace with the PAT]
 Set the "repoUrl" variable, replace <OWNER> with the GitHub account name. 
 ```bash
 repoUrl=https://github.com/<OWNER>/ukth-appinn-containerapps-orderapi
-
 ```
 
   </summary>
@@ -104,8 +99,6 @@ $repoUrl="https://github.com/<OWNER>/ukth-appinn-containerapps-orderapi"
 <br>
 
 ### Add a GitHub Actions workflow to your repository to deploy a container app
-Now all the variables are set so we can run the Azure CLI command, make sure you are located at the root of the repo and run the following command.
-
 Now we need to get information about the Azure Container Registry that we created in the beginning.
 
 <details>
@@ -130,7 +123,6 @@ $acrUrl = Get-AzContainerRegistry -Name $acr -ResourceGroupName $resourceGroup |
 $acrCreds = Get-AzContainerRegistryCredential -Name $acr -ResourceGroupName $resourceGroup
 $acrUsername=$acrCreds.Username
 $acrSecret=$acrCreds.Password
-
 ```
 
   </summary>
@@ -204,9 +196,9 @@ az containerapp github-action add \
 </details>
 <br>
 
-The command will create a GitHub Action and run it, it takes a couple of minutes, please check the status at github.com --> Actions and see the progress of the GitHub Action after it has been created by the Azure CLI command.
+The command will create a GitHub Action and run it, it takes a couple of minutes, please check the status at _github.com --> Actions_ and see the progress of the GitHub Action after it has been created by the Azure CLI command.
 
-Dive into the logs and locate the “latestRevisionName”, then go to the Azure portal and verify that the revision name is the same for the “queuereader” Container App.
+Dive into the logs and locate the _latestRevisionName_, then go to the Azure portal and verify that the revision name is the same for the _queuereader_ Container App.
 
 ![ghaction1](images/ghaction1.png)
 
@@ -229,6 +221,7 @@ Below this line insert the following code.
 logger.LogInformation("This is a new log message!");
 ```
 Then open the Terminal in VS Code and make sure you are in the “queuereaderapp” folder. Run this command.
+
 ```bash
 dotnet build . 
 ```
@@ -238,7 +231,7 @@ Commit the change in VS Code.
 
 ![commit](images/commit.png)
 
-After the commit, the previous created GitHub Action starts, follow the progress at github.com --> Actions.
+After the commit, the previous created GitHub Action starts, follow the progress at _github.com --> Actions_.
 
 After the deployment has succeeded, please verify that the revision number has changed using the Azure portal.
 
@@ -261,15 +254,14 @@ curl -X POST $dataURL?message=mynewlogmessage
   <summary>PowerShell</summary>
 
 ```PowerShell
-Invoke-RestMethod -Url "$($dataURL)?message=mynewlogmessage" -Method Post
-
+Invoke-RestMethod "$($dataURL)?message=mynewlogmessage" -Method Post
 ```
 
   </summary>
 </details>
 <br>
 
-Validate the change by looking in Log Analytics.
+Validate the change by looking in _Log Analytics_.
 
 ```text
 ContainerAppConsoleLogs_CL
@@ -285,6 +277,7 @@ Here you should see one row with the text "This is a new log message!".
 You have now configured a simple CI/CD pipeline to automatically deploy code changes to the application.
 
 Next step is to enhance security by protecting our _HTTP API_ using _API Management_. 
+
 That will be covered in [Challenge 6](challenge6.md)
 ## The challenges
 

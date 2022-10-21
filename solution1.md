@@ -126,6 +126,21 @@ az extension add --name containerapp
 
 <details>
   <summary>Azure PowerShell</summary>
+If you are using Azure PowerShell on Linux (using Codespaces for instance) you need to install Bicep CLI
+Run the following commands in _Bash_:
+
+ ```bash
+ # Fetch the latest Bicep CLI binary
+curl -Lo bicep https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64
+# Mark it as executable
+chmod +x ./bicep
+# Add bicep to your PATH (requires admin)
+sudo mv ./bicep /usr/local/bin/bicep
+# Verify you can now access the 'bicep' command
+bicep --help
+# Done!
+```
+Open a new PowerShell terminal and run teh following commands in _PowerShell_
 
 ```PowerShell
 # If you are using Codespaces the Azure PowerShell (Az) modules are not pre-installed.
@@ -200,7 +215,6 @@ az group create --name $resourceGroup --location $location -o table
 
 <details>
   <summary>Azure PowerShell</summary>
-
 ```PowerShell
 # Generate a random name
 $name = -join ((97..122) | Get-Random -Count 7 | % {[char]$_})
