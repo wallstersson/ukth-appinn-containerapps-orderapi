@@ -19,6 +19,7 @@ The solution instructions include examples of both Bash and PowerShell. For mana
 ### Fork the repository
 1. Log in to [GitHub](https://github.com) with your GitHub account
 2. Fork this repo by selecting the *Fork* menu in the GitHub top right corner
+
 ![](images/fork.png)
 
 > **Note**<br>
@@ -49,6 +50,7 @@ Once the Codespaces finished deployment you will have a browser based VS Code in
 
 ![](images/codespaces-done.png)
 
+
 > **Note**<br>
 > By default, Codespaces time out after 30 minutes of inactivity. After that time any shell variables you defined will be gone and needs to be added again. All changes on files will be persisted between restarts though. A recommendation is to add variables and commands to a script file to be used between timeout restarts. This is also valuable if you restart the shell or switch between Bash and PowerShell.
 
@@ -58,7 +60,7 @@ Once the Codespaces finished deployment you will have a browser based VS Code in
 <details>
   <summary>Using Dev Containers</summary>
   
-If you are running locally on your machine and want to have a similar developer experience as Codespaces, it is possible to use the Dev Container in VS Code. This is done by installing an extension, you can find instructions for how to install `extension` here - [https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+If you are running locally on your machine and want to have a similar developer experience as Codespaces, it is possible to use the Dev Container in VS Code. This is done by installing an extension, you can find instructions for how to install _extension_ here - [https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 It can also be installed by searching for *Dev Containers* in the extensions menu on the left side.
 
 Once the extension is installed you can clone your fork:
@@ -93,7 +95,8 @@ We will be using the _hey_ load testing tool later on.
 
 <details>
   <summary>Using Homebrew (included in Codespaces)</summary>
-  If you are using Codespaces, the container includes Homebrew, so you can install _hey_ like this:
+
+If you are using Codespaces, the container includes Homebrew, so you can install _hey_ like this:
 
 ```bash
 brew install hey
@@ -102,7 +105,7 @@ brew install hey
 <details>
   <summary>Manual installation</summary>
 
-  If you are using an environment other than Codespaces, you can find installation instructions for _hey_ here - [https://github.com/rakyll/hey](https://github.com/rakyll/hey)
+  If you are using an environment other than Codespaces, you can find installation instructions for _hey_ here: [https://github.com/rakyll/hey](https://github.com/rakyll/hey)
 
 </details>
 <br>
@@ -126,8 +129,10 @@ az extension add --name containerapp
 
 <details>
   <summary>Azure PowerShell</summary>
+
 If you are using Azure PowerShell on Linux (using Codespaces for instance) you need to install Bicep CLI
-Run the following commands in _Bash_:
+Run the following commands in _Bash_ 
+
 
  ```bash
  # Fetch the latest Bicep CLI binary
@@ -140,7 +145,7 @@ sudo mv ./bicep /usr/local/bin/bicep
 bicep --help
 # Done!
 ```
-Open a new PowerShell terminal and run teh following commands in _PowerShell_
+Open a new PowerShell terminal and run the following commands in _PowerShell_
 
 ```PowerShell
 # If you are using Codespaces the Azure PowerShell (Az) modules are not pre-installed.
@@ -187,7 +192,7 @@ Get-AzContext
 # In case not the right subscription
 Select-AzSubscription -SubscriptionName <subscription-name>
 ```
-  </details>
+</details>
 
   <br>
 
@@ -215,6 +220,7 @@ az group create --name $resourceGroup --location $location -o table
 
 <details>
   <summary>Azure PowerShell</summary>
+  
 ```PowerShell
 # Generate a random name
 $name = -join ((97..122) | Get-Random -Count 7 | % {[char]$_})

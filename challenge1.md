@@ -12,7 +12,7 @@ The following image illustrates the steps in this challenge
   - GitHub Codespaces
   - Docker Desktop
   - Directly on local machines
-  - PowerShell or Bash (or other shell of choice like ZSH, fish, _insert your favorite shell here_)
+  - PowerShell or Bash (or other shell of choice like ZSH, fish, _<insert your favorite shell here>_)
   - Azure PowerShell or AZ CLI (locally, in container or Azure Cloudshell)
   - Linux, Mac or Windows with Subsystem for Linux 
 - Fork the repository and make a clone 
