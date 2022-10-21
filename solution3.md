@@ -183,7 +183,7 @@ Invoke-RestMethod $storeURL
 ### Verify that traffic is distributed between Container App revisions 
 Let's check the application logs for the _Queue Reader_ application
 
-```text
+```kusto
 ContainerAppConsoleLogs_CL
 | where ContainerAppName_s has "queuereader" and ContainerName_s has "queuereader"
 | where Log_s has "Message"

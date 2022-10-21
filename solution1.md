@@ -211,7 +211,7 @@ location=northeurope
 az group create --name $resourceGroup --location $location -o table
 ```
 </details>
-<br>
+
 
 <details>
   <summary>Azure PowerShell</summary>
