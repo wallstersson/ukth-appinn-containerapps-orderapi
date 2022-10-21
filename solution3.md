@@ -61,31 +61,6 @@ New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup -Name 'v3_deploy
 </details>
 <br>
 
-With the third iteration of our applications deployed, let's try and send another order.
-
-<details>
-  <summary>Bash</summary>
-  
-```bash
-curl -X POST $dataURL?message=item3
-```
-
-  </summary>
-</details>
-
-<details>
-  <summary>PowerShell</summary>
-
-```PowerShell
-Invoke-RestMethod "$($dataURL)?message=item3" -Method Post
-```
-
-
-  </summary>
-</details>
-<br>
-
-
 ### Add orders via HTTP API
 
 With the third iteration of our applications deployed, let's try and send another order.
