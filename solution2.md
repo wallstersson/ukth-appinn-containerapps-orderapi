@@ -381,14 +381,25 @@ Invoke-RestMethod -Url $storeUrl
 
 Ok, that's some progress but not the messages we sent in the query string. 
 
-Let's take a look at the application code
+Let's take a look at the application code:
 
+[Program.cs](httapiapp\Program.cs)
+```c#
+app.MapPost("/data", async (MessageQueueClient client, [FromQuery]string message) =>
+{
+    var messageSent = await client.SendMessage(message);
+    return messageSent ? 
+        Results.Ok() : 
+        new UnavailableResult();
+})
+```
+Here we can see that the api sends the query parameter to the message client. But on closer inspection the we can see that the method on the client does not use the message.
 
 [MessageQueueClient.cs](httpapiapp\MessageQueueClient.cs)
 
 ```c#
 ...
-  public async Task<bool> SendMessage(string message) => await SendMessageToQueue(Guid.NewGuid().ToString());
+public async Task<bool> SendMessage(string message) => await SendMessageToQueue(Guid.NewGuid().ToString());
 ...
 ```
 
@@ -397,12 +408,11 @@ It looks like the code is set to send a GUID, not the message itself. Must have 
 [MessageQueueClient.cs](httpapiapp\MessageQueueClient.cs) (version 2)
 
 ```c#
-    public async Task<bool> SendMessageV2(string message) => await SendMessageToQueue($"{Guid.NewGuid()}--{message}");
- 
+...
+public async Task<bool> SendMessage(string message) => await SendMessageToQueue($"{Guid.NewGuid()}--{message}");
+...
 ```
-We've now fixed the code for you so that the message received is now actually being sent and we've packaged this up into a new container ready to be redeployed. 
-
-But maybe we should be cautious and make sure this new change is working as expected and therefore perform a controlled rollout of the new version so only a subset of the incoming requests hit the new version.
+After we talked to the developer, we discovered that this has already been fixed and it has been pushed as an *v2* version of the *httpapi*. But maybe we should be cautious and make sure this new change is working as expected and therefore perform a controlled rollout of the new version so only a subset of the incoming requests hit the new version.
 
 That will be done as part of [Challenge 3](challenge3.md)
 
