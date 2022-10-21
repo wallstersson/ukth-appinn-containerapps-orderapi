@@ -17,8 +17,6 @@ A number of other options are available
 
 The solution instructions includes examples of both Bash and Powershell. For managing Azure resources there are examples provided for both Azure CLI and Azure PowerShell.
 
-If you are running locally on your machine but still want to have a similar developer experience as Codespaces, it is possbile to use the dev container in VS Code. This is done by installing an extension, you can find instructions for how to install and use the `extension` here - [https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-
 ### Fork the repository
 1. Log in to [GitHub](https://github.com) with your GitHub account
 2. Fork this repo by selecting the *Fork* menu in the GitHub top right corner
@@ -57,6 +55,27 @@ Once the Codespaces finished deployment you will have a browser based VSCode ins
 
 </details>
 
+<details>
+  <summary>Using Dev Containers</summary>
+  
+If you are running locally on your machine and want to have a similar developer experience as Codespaces, it is possible to use the Dev Container in VS Code. This is done by installing an extension, you can find instructions for how to install `extension` here - [https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+It can also be installed by searching for *Dev Containers* in the extensions menu on the left side.
+
+Once the extension is installed you can clone your fork:
+```shell
+git clone <your GitHub repository url>/ukth-appinn-containerapps-orderapi
+cd ukth-appinn-containerapps-orderapi
+```
+Then open the cloned folder in VS Code and click the open remote button.
+![](images/open-remote.png)
+
+This will initiate a docker build of the Dev Container.
+> **Note**<br>
+> This may take some when used the first time (around 5-10 min)
+
+After the container is built and started you should have a VS Code window with all the solution files in it. To start a terminal to continue the workshop you can select a new shell from button shown in the next image.
+![](images/new-terminal.png)
+</details>
 
 <details>
   <summary>Using git CLI from Bash or PowerShell</summary>
