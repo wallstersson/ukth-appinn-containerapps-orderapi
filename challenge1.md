@@ -16,14 +16,13 @@ The following image illustrates the steps in this challenge
   - Azure PowerShell or AZ CLI (locally, in container or Azure Cloudshell)
   - Linux, Mac or Windows with Subsystem for Linux 
 - Fork the repository and make a clone 
-- Install load test tool
 - Log in to Azure and create a resource group
 
 ## Activities
 - Create a fork of this repository
 - Clone the repository in a development environment
-- Install the _hey_ load testing tool
-- Install Azure CLI extension for Container Apps
+- Install the _hey_ load testing tool (_not required for codespaces or devcontainer_)
+- Install Azure CLI extension for Container Apps (_not required for codespaces or devcontainer_)
 - Log in to Azure
 - Create a resource group with the naming convention "[seven letters]-rg" in an Azure region of choice 
 

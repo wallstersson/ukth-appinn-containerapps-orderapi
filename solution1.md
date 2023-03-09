@@ -90,7 +90,27 @@ cd ukth-appinn-containerapps-orderapi
 </details>
 <br>
 
-## Install Azure command line extension for Container Apps
+### Install hey load testing tool (optional, only needs to be done if you want to run outside of Codespaces/Dev Container)
+We will be using the _hey_ load testing tool later on.
+
+<details>
+  <summary>Using Homebrew</summary>
+
+If you are using Codespaces, the container includes Homebrew, so you can install _hey_ like this:
+
+```bash
+brew install hey
+```
+</details>
+<details>
+  <summary>Manual installation</summary>
+
+  If you are using an environment other than Codespaces, you can find installation instructions for _hey_ here: [https://github.com/rakyll/hey](https://github.com/rakyll/hey)
+
+</details>
+<br>
+
+### Install Azure command line extension for Container Apps (optional, only needs to be done if you want to run outside of Codespaces/Dev Container)
 You will need to install an extension to work with Container Apps.
 
 Run the following command in a shell:
@@ -133,6 +153,7 @@ Install-Module Az.App
 ```
   </details>
   <br>
+
 
 ## Log in to Azure 
 We will perform a number of Azure related tasks using command line. Log in with the account with permissions to create Azure resources in a subscription.
