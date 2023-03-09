@@ -31,9 +31,6 @@
 	"remoteUser": "vscode",
 	"features": {
 		"github-cli": "latest",
-		"azure-cli": "latest",
-		"homebrew": "latest"
-
-		
+		"azure-cli": "latest"
 	}
 }

@@ -30,7 +30,6 @@ The following image illustrates the steps in this challenge
 ## Definition of done
 - Repository forked to your GitHub account
 - Repository cloned
-- _hey_ tool installed and verified
 - A resource group created
 
 ## Helpful links
@@ -54,4 +53,3 @@ The following image illustrates the steps in this challenge
 - [Challenge 5: Configure CI/CD for Container Apps](challenge5.md)
 - [Challenge 6: Protect Container App with API Management](challenge6.md)
 - [Challenge 7: Enable Container App authentication](challenge7.md)
-
