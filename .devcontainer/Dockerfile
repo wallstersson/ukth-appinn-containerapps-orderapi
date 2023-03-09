@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/vscode/devcontainers/dotnet:6.0
 
 # Install hey
 RUN apt-get update && \
-    apt-get install wget -y \
+    apt-get install wget -y && \
     wget https://hey-release.s3.us-east-2.amazonaws.com/hey_linux_amd64 && \
     chmod +x hey_linux_amd64 && \
     mv hey_linux_amd64 /usr/local/bin/hey 
