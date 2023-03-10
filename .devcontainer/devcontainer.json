@@ -10,30 +10,38 @@
 		"args": { "VARIANT": "focal" }
 	},
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": {},
-
-
 	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"ms-dotnettools.csharp",
-		"ms-azuretools.vscode-bicep",		
-		"davidanson.vscode-markdownlint"
-	],
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {},
+			"extensions": [
+				"ms-dotnettools.csharp",
+				"ms-azuretools.vscode-bicep",		
+				"davidanson.vscode-markdownlint"]
+		}
+	},
 
 	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
 	"remoteUser": "vscode",
 	"features": {
-		"github-cli": "latest",
-		"azure-cli": "latest",
-		"homebrew": "latest"
-
-		
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"version": "latest"
+		},
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"version": "latest",
+			"extensions": [
+				"containerapp"
+			],
+			"installBicep": true
+		},
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "latest",
+			"modules": [
+				"Az",
+				"Az.App"
+			]
+		}
 	}
 }

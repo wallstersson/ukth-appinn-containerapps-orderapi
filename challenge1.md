@@ -16,21 +16,19 @@ The following image illustrates the steps in this challenge
   - Azure PowerShell or AZ CLI (locally, in container or Azure Cloudshell)
   - Linux, Mac or Windows with Subsystem for Linux 
 - Fork the repository and make a clone 
-- Install load test tool
 - Log in to Azure and create a resource group
 
 ## Activities
 - Create a fork of this repository
 - Clone the repository in a development environment
-- Install the _hey_ load testing tool
-- Install Azure CLI extension for Container Apps
+- Install the _hey_ load testing tool (_not required for codespaces or devcontainer_)
+- Install Azure CLI extension for Container Apps (_not required for codespaces or devcontainer_)
 - Log in to Azure
 - Create a resource group with the naming convention "[seven letters]-rg" in an Azure region of choice 
 
 ## Definition of done
 - Repository forked to your GitHub account
 - Repository cloned
-- _hey_ tool installed and verified
 - A resource group created
 
 ## Helpful links
@@ -54,4 +52,3 @@ The following image illustrates the steps in this challenge
 - [Challenge 5: Configure CI/CD for Container Apps](challenge5.md)
 - [Challenge 6: Protect Container App with API Management](challenge6.md)
 - [Challenge 7: Enable Container App authentication](challenge7.md)
-
