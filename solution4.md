@@ -114,7 +114,7 @@ dashboardURL=https://dashboardapp.$(az containerapp env show -g $resourceGroup -
   <summary>PowerShell</summary>
 
 ```PowerShell
-$dashboardURL="https://dashboardapp$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).DefaultDomain)/"
+$dashboardURL="https://dashboardapp.$((Get-AzContainerAppManagedEnv -ResourceGroupName $resourceGroup -EnvName $containerAppEnv).DefaultDomain)/"
 ```
 
   </summary>
